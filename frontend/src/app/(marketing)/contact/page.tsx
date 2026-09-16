@@ -6,7 +6,7 @@ export default function ContactPage() {
   return (
     <div className="container mx-auto px-4 py-24 max-w-xl">
       <h1 className="text-4xl font-bold font-manrope mb-4 text-center">Contact Us</h1>
-      <p className="text-[var(--fade)] text-center mb-12">Have a question? We'd love to hear from you.</p>
+      <p className="text-[var(--muted)] text-center mb-12">Have a question? We'd love to hear from you.</p>
       
       <form className="space-y-6 bg-[var(--surface)] p-8 rounded-3xl border border-[var(--border)]">
         <div>

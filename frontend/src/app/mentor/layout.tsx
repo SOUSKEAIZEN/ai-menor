@@ -17,7 +17,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
   return (
     <div className="flex h-screen bg-[var(--background)] text-[var(--main)] overflow-hidden">
       <aside className="w-64 bg-[var(--surface)] border-r border-[var(--border)] flex flex-col">
-        <div className="p-6 border-b border-[var(--border)]">
+        <div className="h-16 flex items-center px-6 border-b border-[var(--border)] shrink-0">
           <h2 className="text-xl font-bold">AI mentor</h2>
         </div>
         <nav className="flex-1 overflow-y-auto py-4">
@@ -38,7 +38,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
         </div>
       </aside>
       <main className="flex-1 overflow-y-auto">
-        <header className="h-16 border-b border-[var(--border)] bg-[var(--surface)] flex items-center px-8">
+        <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center px-8">
            <div className="ml-auto flex items-center gap-4">
               <ThemeToggle />
               <span className="text-sm">Mentor Portal</span>

@@ -14,7 +14,7 @@ export default function HowItWorksPage() {
             <div className="text-4xl font-bold text-[var(--contrast)]/20 font-manrope">{s.step}</div>
             <div>
               <h3 className="text-2xl font-bold mb-2">{s.title}</h3>
-              <p className="text-[var(--fade)]">{s.desc}</p>
+              <p className="text-[var(--muted)]">{s.desc}</p>
             </div>
           </div>
         ))}

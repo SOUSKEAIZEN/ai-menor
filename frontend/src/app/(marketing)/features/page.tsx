@@ -13,7 +13,7 @@ export default function FeaturesPage() {
   return (
     <div className="container mx-auto px-4 py-24 max-w-6xl">
       <h1 className="text-5xl font-bold font-manrope mb-4 text-center">Features</h1>
-      <p className="text-xl text-[var(--fade)] mb-16 text-center max-w-2xl mx-auto">Everything you need to accelerate your career.</p>
+      <p className="text-xl text-[var(--muted)] mb-16 text-center max-w-2xl mx-auto">Everything you need to accelerate your career.</p>
       
       <div className="grid md:grid-cols-2 gap-8">
         {features.map((f, i) => (
@@ -25,7 +25,7 @@ export default function FeaturesPage() {
               <CardTitle className="text-2xl">{f.title}</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-[var(--fade)]">{f.desc}</p>
+              <p className="text-[var(--muted)]">{f.desc}</p>
             </CardContent>
           </Card>
         ))}

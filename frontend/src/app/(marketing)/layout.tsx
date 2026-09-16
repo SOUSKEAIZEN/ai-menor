@@ -14,7 +14,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             <Bot className="h-8 w-8 text-[var(--main)]" />
             <span className="font-bold text-xl tracking-tight">AI mentor</span>
           </Link>
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-[var(--fade)]">
+          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-[var(--muted)]">
             <Link href="/features" className="hover:text-[var(--main)] transition-colors">Features</Link>
             <Link href="/how-it-works" className="hover:text-[var(--main)] transition-colors">How it Works</Link>
             <Link href="/for-students" className="hover:text-[var(--main)] transition-colors">Students</Link>
@@ -33,7 +33,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
         {children}
       </main>
 
-      <footer className="border-t border-[var(--border)] bg-[var(--surface)] text-[var(--fade)]">
+      <footer className="border-t border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]">
         <div className="container mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center space-x-2 mb-4">

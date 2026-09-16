@@ -19,9 +19,9 @@ export default function LandingPage() {
           </Badge>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 font-manrope text-[var(--main)]">
             Intelligent Mentoring, <br/>
-            <span className="text-[var(--fade)]">Elevated.</span>
+            <span className="text-[var(--muted)]">Elevated.</span>
           </h1>
-          <p className="text-xl text-[var(--fade)] mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-[var(--muted)] mb-10 max-w-2xl mx-auto">
             Experience the synergy of AI precision and human empathy. AI mentor connects you with top-tier mentors and accelerates your learning with intelligent insights.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -58,7 +58,7 @@ export default function LandingPage() {
                 <div className="w-10 h-10 rounded-full bg-[var(--elevated)] flex items-center justify-center shrink-0 border border-[var(--border)]">
                   <span className="text-sm font-bold">You</span>
                 </div>
-                <div className="bg-[var(--elevated)] p-4 rounded-2xl rounded-tl-sm text-[var(--fade)] border border-[var(--border)]">
+                <div className="bg-[var(--elevated)] p-4 rounded-2xl rounded-tl-sm text-[var(--muted)] border border-[var(--border)]">
                   How can I optimize this React component for better rendering performance?
                 </div>
               </div>
@@ -73,7 +73,7 @@ export default function LandingPage() {
             </div>
             <div className="flex flex-col justify-center space-y-6 pl-0 md:pl-8 border-t md:border-t-0 md:border-l border-[var(--border)] pt-8 md:pt-0">
               <h3 className="text-2xl font-bold font-manrope">AI Co-pilot</h3>
-              <p className="text-[var(--fade)]">Get instant, context-aware assistance while you learn. The AI mentor understands your codebase and helps you push through blockers immediately.</p>
+              <p className="text-[var(--muted)]">Get instant, context-aware assistance while you learn. The AI mentor understands your codebase and helps you push through blockers immediately.</p>
               <ul className="space-y-3">
                 <li className="flex items-center text-[var(--main)]"><Zap className="w-5 h-5 mr-3 text-[var(--contrast)]" /> Real-time code analysis</li>
                 <li className="flex items-center text-[var(--main)]"><Zap className="w-5 h-5 mr-3 text-[var(--contrast)]" /> Personalized learning paths</li>
@@ -89,7 +89,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold font-manrope mb-4">The Triad of Success</h2>
-            <p className="text-[var(--fade)] max-w-2xl mx-auto">AI mentor brings together the three essential elements for unparalleled growth.</p>
+            <p className="text-[var(--muted)] max-w-2xl mx-auto">AI mentor brings together the three essential elements for unparalleled growth.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="bg-[var(--surface)] border-[var(--border)] hover:border-[var(--contrast)] transition-colors">
@@ -99,7 +99,7 @@ export default function LandingPage() {
                 </div>
                 <CardTitle className="font-manrope text-xl">The Student</CardTitle>
               </CardHeader>
-              <CardContent className="text-[var(--fade)]">
+              <CardContent className="text-[var(--muted)]">
                 Driven by curiosity. You set the goals, we provide the ultimate environment for you to thrive and achieve mastery.
               </CardContent>
             </Card>
@@ -110,7 +110,7 @@ export default function LandingPage() {
                 </div>
                 <CardTitle className="font-manrope text-xl">AI Mentor</CardTitle>
               </CardHeader>
-              <CardContent className="text-[var(--fade)]">
+              <CardContent className="text-[var(--muted)]">
                 Always available. Analyzes your learning patterns, provides instant feedback, and curates customized study materials.
               </CardContent>
             </Card>
@@ -121,7 +121,7 @@ export default function LandingPage() {
                 </div>
                 <CardTitle className="font-manrope text-xl">Human Mentor</CardTitle>
               </CardHeader>
-              <CardContent className="text-[var(--fade)]">
+              <CardContent className="text-[var(--muted)]">
                 Industry veterans who provide strategic guidance, review complex architectures, and offer career-defining advice.
               </CardContent>
             </Card>

@@ -1,7 +1,23 @@
-import React from 'react';
+"use client";
+
+import React, { useEffect, useState } from 'react';
 import { Moon, Sun, Monitor, Bell, Shield, Key } from 'lucide-react';
+import { useTheme } from 'next-themes';
 
 export default function Settings() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  const themes = [
+    { icon: Sun, label: 'Light', value: 'light' },
+    { icon: Moon, label: 'Dark', value: 'dark' },
+    { icon: Monitor, label: 'System', value: 'system' }
+  ];
+
   return (
     <div className="space-y-8 max-w-4xl mx-auto pb-12">
       <header>
@@ -12,12 +28,23 @@ export default function Settings() {
          <section className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)] shadow-sm">
            <h2 className="text-lg font-semibold text-[var(--contrast)] mb-4 border-b border-[var(--border)] pb-2">Appearance</h2>
            <div className="flex gap-4 mt-4">
-             {[{icon: Sun, label: 'Light'}, {icon: Moon, label: 'Dark'}, {icon: Monitor, label: 'System'}].map((t, i) => (
-               <button key={i} className={`flex flex-col items-center gap-2 p-4 border rounded-xl flex-1 ${i===0 ? 'border-[var(--main)] bg-[var(--main)]/5' : 'border-[var(--border)] hover:bg-[var(--fade)]'}`}>
-                 <t.icon className={`w-6 h-6 ${i===0 ? 'text-[var(--main)]' : 'text-[var(--muted)]'}`} />
-                 <span className={`text-sm font-medium ${i===0 ? 'text-[var(--main)]' : 'text-[var(--muted)]'}`}>{t.label}</span>
-               </button>
-             ))}
+             {mounted && themes.map((t) => {
+               const isActive = theme === t.value;
+               return (
+                 <button 
+                   key={t.value} 
+                   onClick={() => setTheme(t.value)}
+                   className={`flex flex-col items-center gap-2 p-4 border rounded-xl flex-1 transition-all ${
+                     isActive 
+                       ? 'border-[var(--main)] bg-[var(--main)]/5' 
+                       : 'border-[var(--border)] hover:bg-[var(--fade)]'
+                   }`}
+                 >
+                   <t.icon className={`w-6 h-6 ${isActive ? 'text-[var(--main)]' : 'text-[var(--muted)]'}`} />
+                   <span className={`text-sm font-medium ${isActive ? 'text-[var(--main)]' : 'text-[var(--muted)]'}`}>{t.label}</span>
+                 </button>
+               );
+             })}
            </div>
          </section>
 

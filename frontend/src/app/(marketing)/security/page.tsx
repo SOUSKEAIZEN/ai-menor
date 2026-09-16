@@ -10,7 +10,7 @@ export default function SecurityPage() {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2">End-to-End Encryption</h3>
-            <p className="text-[var(--fade)]">All communication between you and your mentors is encrypted in transit and at rest.</p>
+            <p className="text-[var(--muted)]">All communication between you and your mentors is encrypted in transit and at rest.</p>
           </div>
         </div>
         <div className="flex items-start gap-4">
@@ -19,7 +19,7 @@ export default function SecurityPage() {
           </div>
           <div>
             <h3 className="text-xl font-bold mb-2">SOC 2 Compliant</h3>
-            <p className="text-[var(--fade)]">Our infrastructure meets the highest standards for security, availability, and confidentiality.</p>
+            <p className="text-[var(--muted)]">Our infrastructure meets the highest standards for security, availability, and confidentiality.</p>
           </div>
         </div>
       </div>

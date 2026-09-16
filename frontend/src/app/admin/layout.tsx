@@ -25,7 +25,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
     <div className="flex min-h-screen bg-[var(--background)] text-[var(--main)]">
       {/* Sidebar */}
       <aside className="w-64 border-r border-[var(--border)] bg-[var(--surface)] flex flex-col">
-        <div className="h-16 flex items-center px-6 border-b border-[var(--border)]">
+        <div className="h-16 flex items-center px-6 border-b border-[var(--border)] shrink-0">
           <span className="font-bold text-xl">AI mentor Admin</span>
         </div>
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">

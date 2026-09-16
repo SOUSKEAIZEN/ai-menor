@@ -24,7 +24,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
     <div className="min-h-screen bg-[var(--background)] flex">
       {/* Sidebar */}
       <aside className="w-64 border-r border-[var(--border)] bg-[var(--surface)] flex flex-col hidden md:flex">
-        <div className="p-4 border-b border-[var(--border)]">
+        <div className="h-16 flex items-center px-6 border-b border-[var(--border)] shrink-0">
           <h1 className="text-xl font-bold text-[var(--main)]">AI mentor</h1>
         </div>
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
@@ -40,7 +40,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-screen overflow-hidden">
         {/* Header */}
-        <header className="h-16 border-b border-[var(--border)] bg-[var(--surface)] flex items-center justify-between px-6">
+        <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center justify-between px-6">
           <div className="flex items-center gap-4 md:hidden">
              <span className="font-bold">AI mentor</span>
           </div>
