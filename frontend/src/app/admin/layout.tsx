@@ -50,8 +50,20 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <header className="h-16 shrink-0 flex items-center justify-end px-6 border-b border-[var(--border)] bg-[var(--surface)]">
           <div className="flex items-center gap-4">
             <ThemeToggle />
-            <div className="w-8 h-8 rounded-full bg-[var(--fade)] flex items-center justify-center text-sm font-bold">
-              A
+            <div className="relative group z-50">
+               <button className="w-8 h-8 rounded-full bg-[var(--main)] text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-pointer hover:opacity-80 transition-opacity">A</button>
+               <div className="absolute right-0 top-full mt-2 w-48 bg-[var(--surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all">
+                  <div className="p-3 border-b border-[var(--border)]">
+                     <p className="font-semibold text-[var(--contrast)] text-sm">System Admin</p>
+                     <p className="text-xs text-[var(--muted)]">admin@university.edu</p>
+                  </div>
+                  <div className="p-1">
+                     <Link href="/admin/settings" className="block px-3 py-2 text-sm text-[var(--contrast)] hover:bg-[var(--fade)] rounded-md">Settings</Link>
+                  </div>
+                  <div className="p-1 border-t border-[var(--border)]">
+                     <Link href="/login" className="block w-full text-left px-3 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-md">Log out</Link>
+                  </div>
+               </div>
             </div>
           </div>
         </header>

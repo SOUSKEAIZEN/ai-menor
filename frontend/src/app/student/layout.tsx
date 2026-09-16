@@ -47,7 +47,22 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
           <div className="flex-1" />
           <div className="flex items-center gap-4">
              <ThemeToggle />
-             <div className="w-8 h-8 rounded-full bg-[var(--fade)] flex items-center justify-center text-[var(--main)] font-bold text-sm">A</div>
+             <div className="relative group">
+               <button className="w-8 h-8 rounded-full bg-[var(--main)] text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-pointer hover:opacity-80 transition-opacity">A</button>
+               <div className="absolute right-0 top-full mt-2 w-48 bg-[var(--surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                  <div className="p-3 border-b border-[var(--border)]">
+                     <p className="font-semibold text-[var(--contrast)] text-sm">ABC</p>
+                     <p className="text-xs text-[var(--muted)]">abc@university.edu</p>
+                  </div>
+                  <div className="p-1">
+                     <Link href="/student/profile" className="block px-3 py-2 text-sm text-[var(--contrast)] hover:bg-[var(--fade)] rounded-md">Profile</Link>
+                     <Link href="/student/settings" className="block px-3 py-2 text-sm text-[var(--contrast)] hover:bg-[var(--fade)] rounded-md">Settings</Link>
+                  </div>
+                  <div className="p-1 border-t border-[var(--border)]">
+                     <Link href="/login" className="block w-full text-left px-3 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-md">Log out</Link>
+                  </div>
+               </div>
+             </div>
           </div>
         </header>
 

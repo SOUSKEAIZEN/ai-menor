@@ -41,7 +41,22 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
         <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center px-8">
            <div className="ml-auto flex items-center gap-4">
               <ThemeToggle />
-              <span className="text-sm">Mentor Portal</span>
+              <div className="relative group">
+               <button className="w-8 h-8 rounded-full bg-[var(--main)] text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-pointer hover:opacity-80 transition-opacity">EK</button>
+               <div className="absolute right-0 top-full mt-2 w-48 bg-[var(--surface)] border border-[var(--border)] rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50">
+                  <div className="p-3 border-b border-[var(--border)]">
+                     <p className="font-semibold text-[var(--contrast)] text-sm">ESHA KHANNA</p>
+                     <p className="text-xs text-[var(--muted)]">esha.k@university.edu</p>
+                  </div>
+                  <div className="p-1">
+                     <Link href="/mentor/profile" className="block px-3 py-2 text-sm text-[var(--contrast)] hover:bg-[var(--fade)] rounded-md">Profile</Link>
+                     <Link href="/mentor/settings" className="block px-3 py-2 text-sm text-[var(--contrast)] hover:bg-[var(--fade)] rounded-md">Settings</Link>
+                  </div>
+                  <div className="p-1 border-t border-[var(--border)]">
+                     <Link href="/login" className="block w-full text-left px-3 py-2 text-sm text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-md">Log out</Link>
+                  </div>
+               </div>
+             </div>
            </div>
         </header>
         <div className="p-8">
