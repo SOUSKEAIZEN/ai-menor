@@ -47,7 +47,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0">
-        <header className="h-16 flex items-center justify-end px-6 border-b border-[var(--border)] bg-[var(--surface)]">
+        <header className="h-16 shrink-0 flex items-center justify-end px-6 border-b border-[var(--border)] bg-[var(--surface)]">
           <div className="flex items-center gap-4">
             <ThemeToggle />
             <div className="w-8 h-8 rounded-full bg-[var(--fade)] flex items-center justify-center text-sm font-bold">

@@ -47,7 +47,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
           <div className="flex-1" />
           <div className="flex items-center gap-4">
              <ThemeToggle />
-             <div className="w-8 h-8 rounded-full bg-[var(--elevated)]" />
+             <div className="w-8 h-8 rounded-full bg-[var(--fade)] flex items-center justify-center text-[var(--main)] font-bold text-sm">A</div>
           </div>
         </header>
 

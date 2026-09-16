@@ -12,7 +12,7 @@ export default function Mentor() {
         <div className="lg:col-span-1 space-y-6">
           <div className="p-8 border border-[var(--border)] rounded-2xl bg-[var(--surface)] text-center shadow-sm">
             <div className="w-24 h-24 rounded-full bg-[var(--main)] text-white flex items-center justify-center font-bold text-3xl mx-auto mb-4 ring-4 ring-[var(--main)]/20">
-              JD
+              EK
             </div>
             <h2 className="text-xl font-bold text-[var(--contrast)]">ESHA KHANNA</h2>
             <p className="text-sm text-[var(--muted)] mb-6">Professor, Computer Science</p>

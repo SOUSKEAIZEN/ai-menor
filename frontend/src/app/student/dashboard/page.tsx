@@ -99,7 +99,7 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold mb-6 text-[var(--contrast)]">Your Mentor</h2>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-[var(--main)] text-white flex items-center justify-center font-bold text-lg">
-                JD
+                EK
               </div>
               <div>
                 <h3 className="font-semibold text-[var(--contrast)]">ESHA KHANNA</h3>
