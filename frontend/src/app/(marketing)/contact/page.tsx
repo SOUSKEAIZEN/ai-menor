@@ -11,7 +11,7 @@ export default function ContactPage() {
       <form className="space-y-6 bg-[var(--surface)] p-8 rounded-3xl border border-[var(--border)]">
         <div>
           <label className="block text-sm font-medium mb-2">Name</label>
-          <Input placeholder="Jane Doe" className="bg-[var(--background)]" />
+          <Input placeholder="ESHA KHANNA" className="bg-[var(--background)]" />
         </div>
         <div>
           <label className="block text-sm font-medium mb-2">Email</label>

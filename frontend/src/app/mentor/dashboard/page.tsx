@@ -1,99 +1,52 @@
 import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/Card';
-import { Button } from '@/components/ui/Button';
+import { Card } from '@/components/ui/Card';
+import { PageHeader } from '@/components/ui/PageHeader';
 import { Badge } from '@/components/ui/Badge';
-import { Users, AlertCircle, CalendarClock, Activity } from 'lucide-react';
+import { Button } from '@/components/ui/Button';
 
-export default function DashboardPage() {
+export default function Dashboard() {
+  const needsAttention = [
+    { id: 1, student: "ABC", academic: "At Risk", attendance: "85%", risk: "High", lastInteraction: "2 days ago", action: "Schedule Meeting" },
+    { id: 2, student: "ABC", academic: "Warning", attendance: "90%", risk: "Medium", lastInteraction: "1 week ago", action: "Send Message" }
+  ];
+
   return (
     <div className="space-y-6">
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Total Students</CardTitle>
-            <Users className="h-4 w-4 text-muted" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">128</div>
-            <p className="text-xs text-muted">+4 from last month</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Needs Attention</CardTitle>
-            <AlertCircle className="h-4 w-4 text-red-500" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">12</div>
-            <p className="text-xs text-muted">3 critical alerts</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Upcoming Meetings</CardTitle>
-            <CalendarClock className="h-4 w-4 text-muted" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">8</div>
-            <p className="text-xs text-muted">Next at 2:00 PM</p>
-          </CardContent>
-        </Card>
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-2">
-            <CardTitle className="text-sm font-medium">Recent Activity</CardTitle>
-            <Activity className="h-4 w-4 text-muted" />
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold">34</div>
-            <p className="text-xs text-muted">Actions this week</p>
-          </CardContent>
-        </Card>
+      <PageHeader title="Mentor Overview" description="Welcome back. Here is what's happening with your students today." />
+      
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <Card title="Total Students" className="p-4"><div className="text-3xl font-bold mt-2">124</div></Card>
+        <Card title="Needs Attention" className="p-4"><div className="text-3xl font-bold mt-2 text-red-500">12</div></Card>
+        <Card title="Upcoming Meetings" className="p-4"><div className="text-3xl font-bold mt-2">5</div></Card>
+        <Card title="Pending Follow-ups" className="p-4"><div className="text-3xl font-bold mt-2">8</div></Card>
       </div>
 
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-        <Card className="col-span-4">
-          <CardHeader>
-            <CardTitle>Recent Activity</CardTitle>
-            <CardDescription>Latest updates from your student roster.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-center gap-4 border-b border-border pb-4 last:border-0 last:pb-0">
-                  <div className="h-9 w-9 rounded-full bg-blend flex items-center justify-center text-main font-bold">
-                    S{i}
-                  </div>
-                  <div className="flex-1 space-y-1">
-                    <p className="text-sm font-medium leading-none">Student {i} updated their goal</p>
-                    <p className="text-sm text-muted">2 hours ago</p>
-                  </div>
-                  <Badge variant="outline">Milestone</Badge>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card className="col-span-3">
-          <CardHeader>
-            <CardTitle>Needs Attention</CardTitle>
-            <CardDescription>Students requiring immediate follow-up.</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <div className="space-y-4">
-              {[1, 2, 3].map((i) => (
-                <div key={i} className="flex items-center justify-between border-b border-border pb-4 last:border-0 last:pb-0">
-                  <div className="space-y-1">
-                    <p className="text-sm font-medium">Student Name {i}</p>
-                    <p className="text-xs text-muted">Missed 2 check-ins</p>
-                  </div>
-                  <Button size="sm" variant="outline">Review</Button>
-                </div>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+      <Card title="Students Needing Attention" className="p-4 overflow-x-auto">
+        <table className="w-full text-left border-collapse">
+          <thead>
+            <tr className="border-b border-[var(--border)] text-[var(--muted)]">
+              <th className="py-3 px-4">Student</th>
+              <th className="py-3 px-4">Academic</th>
+              <th className="py-3 px-4">Attendance</th>
+              <th className="py-3 px-4">Risk</th>
+              <th className="py-3 px-4">Last Interaction</th>
+              <th className="py-3 px-4">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {needsAttention.map((row) => (
+              <tr key={row.id} className="border-b border-[var(--border)] hover:bg-[var(--fade)] transition-colors">
+                <td className="py-3 px-4">{row.student}</td>
+                <td className="py-3 px-4">{row.academic}</td>
+                <td className="py-3 px-4">{row.attendance}</td>
+                <td className="py-3 px-4"><Badge variant={row.risk === 'High' ? 'danger' : 'warning'}>{row.risk}</Badge></td>
+                <td className="py-3 px-4">{row.lastInteraction}</td>
+                <td className="py-3 px-4"><Button variant="outline" size="sm">{row.action}</Button></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </Card>
     </div>
   );
 }

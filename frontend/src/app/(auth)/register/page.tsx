@@ -28,7 +28,7 @@ export default function RegisterPage() {
           </label>
           <div className="relative">
             <User className="absolute left-3 top-3 h-4 w-4 text-[var(--muted)]" />
-            <Input id="name" placeholder="John Doe" type="text" className="pl-9" />
+            <Input id="name" placeholder="ABC" type="text" className="pl-9" />
           </div>
         </div>
         <div className="space-y-2">

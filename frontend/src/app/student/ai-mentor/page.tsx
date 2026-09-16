@@ -1,93 +1,109 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { Input } from '@/components/ui/Input';
-import { Button } from '@/components/ui/Button';
-import { Send, Bot, User, Sparkles } from 'lucide-react';
+import { MessageSquare, Paperclip, Mic, Send, Lightbulb, BookOpen, Clock, Target } from 'lucide-react';
 
-export default function AIMentorPage() {
+export default function AIMentor() {
   return (
-    <div className="flex flex-col h-[calc(100vh-8rem)]">
-      <div className="mb-6 flex items-center justify-between">
-        <div>
-          <h1 className="text-3xl font-bold flex items-center gap-3">
-            <Sparkles className="text-[var(--contrast)]" />
-            AI Mentor Workspace
-          </h1>
-          <p className="text-[var(--muted)] mt-1">Your premium 24/7 personalized tutor.</p>
+    <div className="flex h-[calc(100vh-6rem)] gap-6 -m-6 p-6">
+      {/* Left Panel: History */}
+      <div className="w-72 border border-[var(--border)] rounded-2xl bg-[var(--surface)] flex flex-col hidden lg:flex shadow-sm">
+        <div className="p-4 border-b border-[var(--border)]">
+          <h2 className="font-semibold text-[var(--contrast)]">Conversation History</h2>
         </div>
-      </div>
-
-      <div className="flex-1 flex gap-6 min-h-0">
-        <Card className="flex-1 flex flex-col overflow-hidden">
-          <CardHeader className="border-b border-[var(--border)]">
-            <CardTitle>Conversation</CardTitle>
-          </CardHeader>
-          <CardContent className="flex-1 overflow-y-auto p-6 space-y-6">
-            <div className="flex gap-4">
-              <div className="w-8 h-8 rounded-full bg-[var(--contrast)]/20 flex items-center justify-center shrink-0">
-                <Bot className="w-5 h-5 text-[var(--contrast)]" />
-              </div>
-              <div className="bg-[var(--fade)] p-4 rounded-2xl rounded-tl-sm border border-[var(--border)]">
-                <p>Hello! I'm your AI Mentor. I noticed you've been working on Physics lately. Do you want to review the concepts from chapter 4?</p>
-              </div>
-            </div>
-            
-            <div className="flex gap-4 flex-row-reverse">
-              <div className="w-8 h-8 rounded-full bg-[var(--main)] text-[var(--background)] flex items-center justify-center shrink-0">
-                <User className="w-5 h-5" />
-              </div>
-              <div className="bg-[var(--contrast)] text-white p-4 rounded-2xl rounded-tr-sm">
-                <p>Yes, I'm having trouble understanding torque.</p>
-              </div>
-            </div>
-            
-            <div className="flex gap-4">
-              <div className="w-8 h-8 rounded-full bg-[var(--contrast)]/20 flex items-center justify-center shrink-0">
-                <Bot className="w-5 h-5 text-[var(--contrast)]" />
-              </div>
-              <div className="bg-[var(--fade)] p-4 rounded-2xl rounded-tl-sm border border-[var(--border)] max-w-[80%]">
-                <p>No problem! Let's break it down. Torque is the rotational equivalent of linear force...</p>
-              </div>
-            </div>
-          </CardContent>
-          <div className="p-4 border-t border-[var(--border)] bg-[var(--surface)]">
-            <div className="flex gap-2">
-              <Input placeholder="Ask anything..." className="flex-1" />
-              <Button size="icon"><Send className="w-4 h-4" /></Button>
+        <div className="flex-1 overflow-y-auto p-2 space-y-6">
+          <div>
+            <p className="px-3 py-2 text-xs font-semibold text-[var(--muted)] uppercase tracking-wider">Today</p>
+            <div className="space-y-1">
+              <button className="w-full text-left px-3 py-2 rounded-xl text-sm font-medium text-[var(--contrast)] bg-[var(--elevated)]">Analyze my progress</button>
+              <button className="w-full text-left px-3 py-2 rounded-xl text-sm text-[var(--muted)] hover:bg-[var(--fade)] transition-colors">Help me plan my week</button>
             </div>
           </div>
-        </Card>
+          <div>
+            <p className="px-3 py-2 text-xs font-semibold text-[var(--muted)] uppercase tracking-wider">Yesterday</p>
+            <div className="space-y-1">
+              <button className="w-full text-left px-3 py-2 rounded-xl text-sm text-[var(--muted)] hover:bg-[var(--fade)] transition-colors">Explain my attendance</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Center Panel: Chat */}
+      <div className="flex-1 border border-[var(--border)] rounded-2xl bg-[var(--surface)] flex flex-col shadow-sm relative overflow-hidden">
+        <div className="p-4 border-b border-[var(--border)] flex items-center justify-between bg-white/50 backdrop-blur-md z-10">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 rounded-xl bg-[var(--main)]/10 text-[var(--main)] flex items-center justify-center">
+              <MessageSquare className="w-5 h-5" />
+            </div>
+            <div>
+              <h2 className="font-semibold text-[var(--contrast)]">AI Mentor</h2>
+              <p className="text-xs text-green-500 font-medium flex items-center gap-1">
+                <span className="w-2 h-2 rounded-full bg-green-500 block"></span> Online & Ready
+              </p>
+            </div>
+          </div>
+        </div>
         
-        <div className="w-80 hidden lg:flex flex-col gap-4">
-          <Card>
-            <CardHeader>
-              <CardTitle>Suggested Prompts</CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-2">
-              <Button variant="outline" className="w-full justify-start text-left text-sm h-auto py-3">Explain a complex topic</Button>
-              <Button variant="outline" className="w-full justify-start text-left text-sm h-auto py-3">Generate practice questions</Button>
-              <Button variant="outline" className="w-full justify-start text-left text-sm h-auto py-3">Help me plan my study schedule</Button>
-            </CardContent>
-          </Card>
+        <div className="flex-1 p-8 flex flex-col items-center justify-center text-center overflow-y-auto">
+          <div className="w-16 h-16 rounded-2xl bg-[var(--main)]/10 text-[var(--main)] flex items-center justify-center mb-6">
+            <Lightbulb className="w-8 h-8" />
+          </div>
+          <h3 className="text-2xl font-bold text-[var(--contrast)] mb-2">How can I help you today?</h3>
+          <p className="text-[var(--muted)] max-w-md mb-8">I'm your personal AI mentor. I can help you analyze your progress, plan your studies, or answer questions about your subjects.</p>
           
-          <Card className="flex-1">
-            <CardHeader>
-              <CardTitle>Current Context</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-[var(--muted)]">The AI is currently referencing:</p>
-              <ul className="mt-2 space-y-2 text-sm">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[var(--contrast)]"></span>
-                  Physics 101 Syllabus
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-[var(--contrast)]"></span>
-                  Recent Quiz 3 Results
-                </li>
-              </ul>
-            </CardContent>
-          </Card>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full max-w-2xl">
+            {[
+              "Analyze my current academic progress",
+              "Create a study plan for this week",
+              "How can I improve my DBMS grades?",
+              "Summarize my recent attendance"
+            ].map((prompt, i) => (
+              <button key={i} className="p-4 border border-[var(--border)] rounded-xl bg-[var(--fade)] text-sm font-medium text-[var(--contrast)] hover:border-[var(--main)] hover:bg-[var(--main)]/5 transition-all text-left">
+                {prompt}
+              </button>
+            ))}
+          </div>
+        </div>
+        
+        <div className="p-4 border-t border-[var(--border)] bg-[var(--surface)]">
+          <div className="max-w-4xl mx-auto relative flex items-end gap-2 bg-[var(--fade)] p-2 rounded-2xl border border-[var(--border)] focus-within:border-[var(--main)] focus-within:ring-2 focus-within:ring-[var(--main)]/20 transition-all">
+            <button className="p-3 text-[var(--muted)] hover:text-[var(--main)] transition-colors rounded-xl hover:bg-[var(--surface)]">
+              <Paperclip className="w-5 h-5" />
+            </button>
+            <textarea 
+              placeholder="Ask me anything..." 
+              className="flex-1 max-h-32 min-h-[44px] bg-transparent border-none focus:ring-0 resize-none py-3 text-[var(--contrast)] text-sm"
+              rows={1}
+            />
+            <div className="flex items-center gap-2">
+              <button className="p-3 text-[var(--muted)] hover:text-[var(--main)] transition-colors rounded-xl hover:bg-[var(--surface)]">
+                <Mic className="w-5 h-5" />
+              </button>
+              <button className="p-3 bg-[var(--main)] text-white rounded-xl shadow-md shadow-[var(--main)]/20 hover:opacity-90 transition-opacity">
+                <Send className="w-5 h-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      {/* Right Panel: Context */}
+      <div className="w-80 border border-[var(--border)] rounded-2xl bg-[var(--surface)] flex flex-col hidden xl:flex shadow-sm">
+        <div className="p-4 border-b border-[var(--border)]">
+          <h2 className="font-semibold text-[var(--contrast)]">Student Context</h2>
+        </div>
+        <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          {[
+            { title: "Academic", icon: BookOpen, desc: "GPA: 3.8 | Credits: 24/120" },
+            { title: "Attendance", icon: Clock, desc: "Overall: 92% | On track" },
+            { title: "Goals", icon: Target, desc: "3 Active | 1 Completing soon" }
+          ].map((ctx, i) => (
+            <div key={i} className="p-4 border border-[var(--border)] rounded-xl bg-[var(--fade)]">
+              <div className="flex items-center gap-3 mb-2">
+                <ctx.icon className="w-4 h-4 text-[var(--main)]" />
+                <h3 className="font-medium text-sm text-[var(--contrast)]">{ctx.title}</h3>
+              </div>
+              <p className="text-xs text-[var(--muted)]">{ctx.desc}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

@@ -1,49 +1,71 @@
 import React from 'react';
+import { Search, Filter, Plus, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
 import Link from 'next/link';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { CheckSquare, Clock } from 'lucide-react';
 
-export default function TasksPage() {
-  const tasks = [
-    { id: '1', title: 'Calculus Assignment 4', course: 'MATH 301', due: 'Tomorrow', status: 'pending' },
-    { id: '2', title: 'Physics Lab Report', course: 'PHYS 402', due: 'In 3 days', status: 'in-progress' },
-    { id: '3', title: 'Read Chapter 5', course: 'CS 201', due: 'Next week', status: 'completed' },
-  ];
-
+export default function Tasks() {
   return (
-    <div className="space-y-6">
-      <div className="flex justify-between items-center">
+    <div className="space-y-8 max-w-7xl mx-auto pb-12">
+      <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h1 className="text-3xl font-bold">Tasks</h1>
-          <p className="text-[var(--muted)]">Manage your assignments and homework.</p>
+          <h1 className="text-3xl font-bold text-[var(--main)]">My Tasks</h1>
+          <p className="text-[var(--muted)] mt-2">Track your assignments, projects, and deadlines.</p>
         </div>
+        <div className="flex items-center gap-3">
+          <div className="relative">
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-[var(--muted)]" />
+            <input type="text" placeholder="Search tasks..." className="pl-9 pr-4 py-2 bg-[var(--surface)] border border-[var(--border)] rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-[var(--main)]" />
+          </div>
+          <button className="flex items-center gap-2 px-4 py-2 bg-[var(--main)] text-white rounded-xl text-sm font-medium hover:opacity-90 transition-opacity">
+            <Plus className="w-4 h-4" /> Create Task
+          </button>
+        </div>
+      </header>
+      
+      <div className="flex gap-4 border-b border-[var(--border)] pb-2 overflow-x-auto">
+        {['All', 'Today', 'Upcoming', 'Completed', 'Overdue'].map((tab, i) => (
+          <button key={tab} className={`px-4 py-2 text-sm font-medium whitespace-nowrap rounded-lg ${i === 0 ? 'bg-[var(--main)] text-white' : 'text-[var(--muted)] hover:bg-[var(--fade)]'}`}>
+            {tab}
+          </button>
+        ))}
       </div>
 
-      <Card>
-        <CardContent className="p-0">
-          <div className="divide-y divide-[var(--border)]">
-            {tasks.map(task => (
-              <Link href={`/student/tasks/${task.id}`} key={task.id} className="block hover:bg-[var(--fade)] transition-colors p-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-4">
-                    <div className={`w-5 h-5 rounded border flex items-center justify-center ${task.status === 'completed' ? 'bg-[var(--contrast)] border-[var(--contrast)] text-white' : 'border-[var(--muted)]'}`}>
-                      {task.status === 'completed' && <CheckSquare className="w-3 h-3" />}
-                    </div>
-                    <div>
-                      <h4 className={`font-medium ${task.status === 'completed' ? 'line-through text-[var(--muted)]' : ''}`}>{task.title}</h4>
-                      <p className="text-xs text-[var(--muted)]">{task.course}</p>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-2 text-sm text-[var(--muted)]">
-                    <Clock className="w-4 h-4" />
-                    {task.due}
-                  </div>
+      <div className="grid grid-cols-1 gap-4">
+        {[
+          { id: 1, title: 'Complete DBMS Assignment 4', sub: 'CS301', due: 'Today, 11:59 PM', prio: 'High', status: 'Pending', prog: 20 },
+          { id: 2, title: 'Read OS Chapter 5', sub: 'CS302', due: 'Tomorrow, 9:00 AM', prio: 'Medium', status: 'In Progress', prog: 50 },
+          { id: 3, title: 'Network Topology Quiz', sub: 'CS303', due: 'Oct 20, 10:00 AM', prio: 'High', status: 'Pending', prog: 0 },
+        ].map(task => (
+          <div key={task.id} className="p-5 border border-[var(--border)] rounded-2xl bg-[var(--surface)] hover:border-[var(--main)] transition-colors flex flex-col md:flex-row md:items-center gap-6 group">
+            <div className="flex-1 flex gap-4">
+              <button className="mt-1 w-6 h-6 rounded-full border-2 border-[var(--muted)] flex-shrink-0 group-hover:border-[var(--main)] transition-colors"></button>
+              <div>
+                <Link href={`/student/tasks/${task.id}`} className="font-semibold text-lg text-[var(--contrast)] group-hover:text-[var(--main)] transition-colors block">{task.title}</Link>
+                <div className="flex flex-wrap gap-3 mt-2 text-xs text-[var(--muted)]">
+                  <span className="px-2 py-1 bg-[var(--fade)] rounded-md">{task.sub}</span>
+                  <span className="flex items-center gap-1 text-orange-500"><AlertCircle className="w-3 h-3" /> {task.prio} Priority</span>
+                  <span className="flex items-center gap-1"><Clock className="w-3 h-3" /> Due {task.due}</span>
                 </div>
-              </Link>
-            ))}
+              </div>
+            </div>
+            
+            <div className="w-full md:w-48 space-y-2">
+               <div className="flex justify-between text-xs text-[var(--muted)]">
+                 <span>Progress</span>
+                 <span className="font-medium text-[var(--contrast)]">{task.prog}%</span>
+               </div>
+               <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden">
+                 <div className="h-full bg-[var(--main)]" style={{ width: `${task.prog}%` }} />
+               </div>
+            </div>
+            
+            <div className="md:w-32 flex justify-end">
+              <span className={`px-3 py-1 rounded-full text-xs font-medium ${task.status === 'Pending' ? 'bg-orange-500/10 text-orange-500' : 'bg-blue-500/10 text-blue-500'}`}>
+                {task.status}
+              </span>
+            </div>
           </div>
-        </CardContent>
-      </Card>
+        ))}
+      </div>
     </div>
   );
 }

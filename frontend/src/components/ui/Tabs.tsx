@@ -4,8 +4,8 @@ import { cn } from "@/lib/utils"
 
 const TabsContext = React.createContext<{ value: string; onValueChange: (v: string) => void }>({ value: '', onValueChange: () => {} })
 
-export const Tabs = ({ className, children, defaultValue, value, onValueChange }: { className?: string, children: React.ReactNode, defaultValue?: string, value?: string, onValueChange?: (v: string) => void }) => {
-  const [internalValue, setInternalValue] = React.useState(defaultValue || "")
+export const Tabs = ({ className, children, defaultValue, value, onValueChange, tabs }: { className?: string, children?: React.ReactNode, defaultValue?: string, value?: string, onValueChange?: (v: string) => void, tabs?: { id: string, label: string, content: React.ReactNode }[] }) => {
+  const [internalValue, setInternalValue] = React.useState(defaultValue || (tabs && tabs.length > 0 ? tabs[0].id : ""))
   const currentValue = value !== undefined ? value : internalValue
   const handleValueChange = (v: string) => {
     setInternalValue(v)
@@ -13,7 +13,20 @@ export const Tabs = ({ className, children, defaultValue, value, onValueChange }
   }
   return (
     <TabsContext.Provider value={{ value: currentValue, onValueChange: handleValueChange }}>
-      <div className={cn("w-full", className)}>{children}</div>
+      <div className={cn("w-full", className)}>
+        {tabs ? (
+          <>
+            <TabsList>
+              {tabs.map((tab) => (
+                <TabsTrigger key={tab.id} value={tab.id}>{tab.label}</TabsTrigger>
+              ))}
+            </TabsList>
+            {tabs.map((tab) => (
+              <TabsContent key={tab.id} value={tab.id}>{tab.content}</TabsContent>
+            ))}
+          </>
+        ) : children}
+      </div>
     </TabsContext.Provider>
   )
 }

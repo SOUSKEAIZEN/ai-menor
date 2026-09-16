@@ -1,42 +1,40 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
-import { Settings } from 'lucide-react';
-import { Button } from '@/components/ui/Button';
+import { Moon, Sun, Monitor, Bell, Shield, Key } from 'lucide-react';
 
-export default function SettingsPage() {
+export default function Settings() {
   return (
-    <div className="space-y-6 max-w-2xl mx-auto mt-6">
-      <h1 className="text-3xl font-bold">Settings</h1>
-      
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2"><Settings className="w-5 h-5" /> Preferences</CardTitle>
-        </CardHeader>
-        <CardContent className="space-y-6">
-          <div className="flex items-center justify-between">
-            <div>
-              <h4 className="font-medium">Email Notifications</h4>
-              <p className="text-sm text-[var(--muted)]">Receive daily summary emails.</p>
-            </div>
-            <div className="w-12 h-6 bg-[var(--contrast)] rounded-full relative cursor-pointer">
-              <div className="w-4 h-4 bg-white rounded-full absolute right-1 top-1"></div>
-            </div>
-          </div>
-          <div className="flex items-center justify-between">
-            <div>
-              <h4 className="font-medium">Dark Mode</h4>
-              <p className="text-sm text-[var(--muted)]">Toggle application theme.</p>
-            </div>
-            <div className="w-12 h-6 bg-[var(--fade)] rounded-full relative cursor-pointer border border-[var(--border)]">
-              <div className="w-4 h-4 bg-[var(--muted)] rounded-full absolute left-1 top-1"></div>
-            </div>
-          </div>
-          
-          <div className="pt-6 border-t border-[var(--border)]">
-            <Button variant="outline" className="text-red-500 border-red-500 hover:bg-red-500/10 hover:text-red-500">Sign Out</Button>
-          </div>
-        </CardContent>
-      </Card>
+    <div className="space-y-8 max-w-4xl mx-auto pb-12">
+      <header>
+        <h1 className="text-3xl font-bold text-[var(--main)]">Settings</h1>
+      </header>
+
+      <div className="space-y-6">
+         <section className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)] shadow-sm">
+           <h2 className="text-lg font-semibold text-[var(--contrast)] mb-4 border-b border-[var(--border)] pb-2">Appearance</h2>
+           <div className="flex gap-4 mt-4">
+             {[{icon: Sun, label: 'Light'}, {icon: Moon, label: 'Dark'}, {icon: Monitor, label: 'System'}].map((t, i) => (
+               <button key={i} className={`flex flex-col items-center gap-2 p-4 border rounded-xl flex-1 ${i===0 ? 'border-[var(--main)] bg-[var(--main)]/5' : 'border-[var(--border)] hover:bg-[var(--fade)]'}`}>
+                 <t.icon className={`w-6 h-6 ${i===0 ? 'text-[var(--main)]' : 'text-[var(--muted)]'}`} />
+                 <span className={`text-sm font-medium ${i===0 ? 'text-[var(--main)]' : 'text-[var(--muted)]'}`}>{t.label}</span>
+               </button>
+             ))}
+           </div>
+         </section>
+
+         <section className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)] shadow-sm">
+           <h2 className="text-lg font-semibold text-[var(--contrast)] mb-4 border-b border-[var(--border)] pb-2">Notifications</h2>
+           <div className="space-y-4 mt-4">
+             {['Email Notifications', 'Push Notifications', 'AI Mentor Alerts', 'Task Reminders'].map((opt, i) => (
+               <div key={i} className="flex items-center justify-between">
+                 <span className="text-sm font-medium text-[var(--contrast)]">{opt}</span>
+                 <div className={`w-10 h-6 rounded-full flex items-center p-1 cursor-pointer transition-colors ${i < 3 ? 'bg-[var(--main)]' : 'bg-[var(--border)]'}`}>
+                   <div className={`w-4 h-4 rounded-full bg-white transition-transform ${i < 3 ? 'translate-x-4' : 'translate-x-0'}`}></div>
+                 </div>
+               </div>
+             ))}
+           </div>
+         </section>
+      </div>
     </div>
   );
 }
