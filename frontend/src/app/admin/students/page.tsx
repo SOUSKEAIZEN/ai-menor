@@ -64,7 +64,7 @@ export default function StudentsPage() {
                   </td>
                   <td className="px-6 py-4 text-[var(--contrast)]">{student.program}</td>
                   <td className="px-6 py-4">
-                    <Badge variant={student.status === 'Enrolled' ? 'success' : student.status === 'At Risk' ? 'destructive' : 'secondary'}>
+                    <Badge variant={student.status === 'Enrolled' ? 'success' : student.status === 'At Risk' ? 'danger' : 'secondary'}>
                       {student.status}
                     </Badge>
                   </td>

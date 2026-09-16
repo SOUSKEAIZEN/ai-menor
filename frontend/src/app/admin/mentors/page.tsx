@@ -51,7 +51,7 @@ export default function MentorsPage() {
                   <td className="px-6 py-4 text-[var(--contrast)]">{mentor.dept}</td>
                   <td className="px-6 py-4 text-[var(--contrast)]">{mentor.students}</td>
                   <td className="px-6 py-4">
-                    <Badge variant={mentor.status === 'Active' ? 'success' : mentor.status === 'Overloaded' ? 'destructive' : 'secondary'}>
+                    <Badge variant={mentor.status === 'Active' ? 'success' : mentor.status === 'Overloaded' ? 'danger' : 'secondary'}>
                       {mentor.status}
                     </Badge>
                   </td>

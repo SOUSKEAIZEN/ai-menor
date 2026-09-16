@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { Input } from '@/components/ui/Input';
 import { Button } from '@/components/ui/Button';
+import { ThemeToggle } from '@/components/ThemeToggle';
 
 const sidebarLinks = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -38,7 +39,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       >
         <div className="h-16 flex items-center px-6 border-b border-[var(--border)]">
           <div className="w-8 h-8 rounded bg-[var(--main)] text-white flex items-center justify-center font-bold mr-3">A</div>
-          <span className="font-semibold text-lg text-[var(--contrast)]">Aevora Mentor</span>
+          <span className="font-semibold text-lg text-[var(--contrast)]">AI mentor</span>
         </div>
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
           {sidebarLinks.map((link) => {
@@ -72,6 +73,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
             />
           </div>
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Button variant="ghost" size="icon" className="text-[var(--muted)] hover:text-[var(--contrast)] relative">
               <Bell className="w-5 h-5" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-[var(--main)]" />

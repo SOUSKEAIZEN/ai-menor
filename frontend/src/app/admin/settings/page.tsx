@@ -18,7 +18,7 @@ export default function SettingsPage() {
           <div className="grid grid-cols-2 gap-4">
             <div className="space-y-2">
               <label className="text-sm font-medium text-[var(--contrast)]">Institution Name</label>
-              <Input defaultValue="Aevora University" />
+              <Input defaultValue="AI mentor University" />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-medium text-[var(--contrast)]">Short Code</label>

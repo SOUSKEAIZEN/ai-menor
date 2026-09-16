@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const sidebarLinks = [
   { name: "Dashboard", href: "/mentor/dashboard", icon: LayoutDashboard },
@@ -128,6 +129,7 @@ export default function MentorLayout({
             {pathname.split('/').filter(Boolean).pop()?.replace('-', ' ') || 'Dashboard'}
           </h1>
           <div className="flex items-center gap-4">
+            <ThemeToggle />
             <button className="relative p-2 text-muted hover:text-contrast transition-colors">
               <Bell size={20} />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-main rounded-full"></span>
