@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { Bot } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
+import { ThemeToggle } from '@/components/ThemeToggle';
+
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)] text-[var(--main)] font-sans">
@@ -20,6 +22,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
             <Link href="/about" className="hover:text-[var(--main)] transition-colors">About</Link>
           </nav>
           <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Link href="/student/dashboard"><Button variant="ghost" className="hidden sm:inline-flex">Sign In</Button></Link>
             <Link href="/student/dashboard"><Button variant="primary">Get Started</Button></Link>
           </div>

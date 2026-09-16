@@ -2,9 +2,14 @@ import React from 'react';
 import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 
+import { ThemeToggle } from '@/components/ThemeToggle';
+
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[var(--background)] text-[var(--main)] flex">
+    <div className="min-h-screen bg-[var(--background)] text-[var(--main)] flex relative">
+      <div className="absolute top-4 right-4 z-50">
+        <ThemeToggle />
+      </div>
       {/* Brand Side - Hidden on mobile */}
       <div className="hidden lg:flex lg:w-1/2 bg-[var(--surface)] flex-col justify-between p-12 relative overflow-hidden">
         {/* Decorative background elements */}
@@ -16,7 +21,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             <div className="w-10 h-10 bg-[var(--main)] text-[var(--contrast)] rounded-xl flex items-center justify-center">
               <BookOpen size={24} />
             </div>
-            <span>AI mentor<span className="text-[var(--fade)]">Mentor</span></span>
+            <span>AI mentor</span>
           </Link>
         </div>
 

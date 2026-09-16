@@ -1,5 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
+import { ThemeToggle } from '@/components/ThemeToggle';
 import { 
   LayoutDashboard, 
   BrainCircuit, 
@@ -58,6 +59,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
             <BrainCircuit className="w-6 h-6 text-[var(--contrast)]" />
           </div>
           <div className="flex-1 flex justify-end items-center gap-4">
+            <ThemeToggle />
             <button className="p-2 text-[var(--muted)] hover:text-[var(--main)] rounded-full hover:bg-[var(--fade)] transition-colors">
               <Bell className="w-5 h-5" />
             </button>
