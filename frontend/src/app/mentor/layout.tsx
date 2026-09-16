@@ -1,9 +1,13 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Home, Users, Bell, Activity, MessageSquare, Calendar, BarChart2, User, Settings } from 'lucide-react';
+import { Home, Users, Bell, Activity, MessageSquare, Calendar, BarChart2, User, Settings, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function MentorLayout({ children }: { children: React.ReactNode }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const navItems = [
     { label: 'Dashboard', href: '/mentor/dashboard', icon: Home },
     { label: 'Students', href: '/mentor/students', icon: Users },
@@ -16,15 +20,23 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
 
   return (
     <div className="flex h-screen bg-[var(--background)] text-[var(--main)] overflow-hidden">
-      <aside className="w-64 bg-[var(--surface)] border-r border-[var(--border)] flex flex-col">
-        <div className="h-16 flex items-center px-6 border-b border-[var(--border)] shrink-0">
+      {/* Mobile Sidebar Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-black/50 md:hidden" onClick={() => setMobileMenuOpen(false)} />
+      )}
+
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 bg-[var(--surface)] border-r border-[var(--border)] flex flex-col transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="h-16 flex items-center justify-between px-6 border-b border-[var(--border)] shrink-0">
           <h2 className="text-xl font-bold">AI mentor</h2>
+          <button className="md:hidden text-[var(--muted)]" onClick={() => setMobileMenuOpen(false)}>
+            <X size={24} />
+          </button>
         </div>
         <nav className="flex-1 overflow-y-auto py-4">
           <ul className="space-y-1 px-3">
             {navItems.map((item) => (
               <li key={item.label}>
-                <Link href={item.href} className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--fade)] transition-colors">
+                <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--fade)] transition-colors">
                   <item.icon size={20} className="text-[var(--muted)]" />
                   <span>{item.label}</span>
                 </Link>
@@ -33,13 +45,19 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
           </ul>
         </nav>
         <div className="p-4 border-t border-[var(--border)] flex gap-2 justify-around">
-           <Link href="/mentor/profile"><User size={20} className="text-[var(--muted)] hover:text-[var(--main)] transition-colors" /></Link>
-           <Link href="/mentor/settings"><Settings size={20} className="text-[var(--muted)] hover:text-[var(--main)] transition-colors" /></Link>
+           <Link href="/mentor/profile" onClick={() => setMobileMenuOpen(false)}><User size={20} className="text-[var(--muted)] hover:text-[var(--main)] transition-colors" /></Link>
+           <Link href="/mentor/settings" onClick={() => setMobileMenuOpen(false)}><Settings size={20} className="text-[var(--muted)] hover:text-[var(--main)] transition-colors" /></Link>
         </div>
       </aside>
-      <main className="flex-1 overflow-y-auto">
-        <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center px-8">
-           <div className="ml-auto flex items-center gap-4">
+      <main className="flex-1 overflow-y-auto w-full">
+        <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center px-4 md:px-8 justify-between md:justify-end">
+           <div className="flex items-center gap-3 md:hidden">
+             <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1">
+               <Menu size={24} />
+             </button>
+             <span className="font-bold">AI mentor</span>
+           </div>
+           <div className="flex items-center gap-2 md:gap-4 ml-auto">
               <ThemeToggle />
               <div className="relative group">
                <button className="w-8 h-8 rounded-full bg-[var(--main)] text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-pointer hover:opacity-80 transition-opacity">EK</button>
@@ -59,7 +77,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
              </div>
            </div>
         </header>
-        <div className="p-8">
+        <div className="p-4 md:p-8">
           {children}
         </div>
       </main>

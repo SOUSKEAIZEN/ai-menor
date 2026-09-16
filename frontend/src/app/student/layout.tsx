@@ -1,9 +1,13 @@
-import React from 'react';
+"use client";
+
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Home, MessageSquare, LineChart, BookOpen, Calendar, CheckSquare, Target, Clock, Library, User, Bell, Settings } from 'lucide-react';
+import { Home, MessageSquare, LineChart, BookOpen, Calendar, CheckSquare, Target, Clock, Library, User, Bell, Settings, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
 
 export default function StudentLayout({ children }: { children: React.ReactNode }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  
   const navItems = [
     { name: 'Dashboard', href: '/student/dashboard', icon: Home },
     { name: 'AI Mentor', href: '/student/ai-mentor', icon: MessageSquare },
@@ -22,14 +26,22 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
 
   return (
     <div className="min-h-screen bg-[var(--background)] flex">
+      {/* Mobile Sidebar Overlay */}
+      {mobileMenuOpen && (
+        <div className="fixed inset-0 z-40 bg-black/50 md:hidden" onClick={() => setMobileMenuOpen(false)} />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 border-r border-[var(--border)] bg-[var(--surface)] flex flex-col hidden md:flex">
-        <div className="h-16 flex items-center px-6 border-b border-[var(--border)] shrink-0">
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-[var(--border)] bg-[var(--surface)] flex flex-col transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="h-16 flex items-center justify-between px-6 border-b border-[var(--border)] shrink-0">
           <h1 className="text-xl font-bold text-[var(--main)]">AI mentor</h1>
+          <button className="md:hidden text-[var(--muted)]" onClick={() => setMobileMenuOpen(false)}>
+            <X size={24} />
+          </button>
         </div>
         <nav className="flex-1 overflow-y-auto p-4 space-y-1">
           {navItems.map((item) => (
-            <Link key={item.name} href={item.href} className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[var(--contrast)] hover:bg-[var(--elevated)] hover:text-[var(--main)] transition-colors">
+            <Link key={item.name} href={item.href} onClick={() => setMobileMenuOpen(false)} className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[var(--contrast)] hover:bg-[var(--elevated)] hover:text-[var(--main)] transition-colors">
               <item.icon className="w-5 h-5 text-[var(--muted)]" />
               {item.name}
             </Link>
@@ -38,14 +50,17 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col h-screen overflow-hidden">
+      <main className="flex-1 flex flex-col h-screen overflow-hidden w-full">
         {/* Header */}
-        <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center justify-between px-6">
-          <div className="flex items-center gap-4 md:hidden">
+        <header className="h-16 shrink-0 border-b border-[var(--border)] bg-[var(--surface)] flex items-center justify-between px-4 md:px-6">
+          <div className="flex items-center gap-3 md:hidden">
+             <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1">
+               <Menu size={24} />
+             </button>
              <span className="font-bold">AI mentor</span>
           </div>
-          <div className="flex-1" />
-          <div className="flex items-center gap-4">
+          <div className="hidden md:flex flex-1" />
+          <div className="flex items-center gap-2 md:gap-4 ml-auto">
              <ThemeToggle />
              <div className="relative group">
                <button className="w-8 h-8 rounded-full bg-[var(--main)] text-white flex items-center justify-center text-sm font-bold shadow-sm cursor-pointer hover:opacity-80 transition-opacity">A</button>
@@ -67,7 +82,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-6 md:p-8">
+        <div className="flex-1 overflow-y-auto p-4 md:p-8">
           {children}
         </div>
       </main>
