@@ -23,7 +23,7 @@ export default function Profile() {
          <div className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)]">
            <h3 className="text-lg font-semibold text-[var(--contrast)] mb-4">Personal Info</h3>
            <div className="space-y-4">
-             <div className="flex items-center gap-3 text-sm text-[var(--muted)]"><Mail className="w-4 h-4"/> nitish.k@university.edu</div>
+             <div className="flex items-center gap-3 text-sm text-[var(--muted)]"><Mail className="w-4 h-4"/> abc@university.edu</div>
              <div className="flex items-center gap-3 text-sm text-[var(--muted)]"><MapPin className="w-4 h-4"/> Hostel A, Room 302</div>
            </div>
          </div>
