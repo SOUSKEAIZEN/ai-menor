@@ -10,7 +10,7 @@ export default function Profile() {
 
       <div className="p-8 border border-[var(--border)] rounded-2xl bg-[var(--surface)] shadow-sm flex flex-col md:flex-row items-center gap-8">
          <div className="w-32 h-32 rounded-full bg-[var(--main)] text-white flex items-center justify-center font-bold text-4xl shadow-lg ring-4 ring-[var(--main)]/20">
-           NK
+           A
          </div>
          <div className="text-center md:text-left">
            <h2 className="text-2xl font-bold text-[var(--contrast)]">ABC</h2>
