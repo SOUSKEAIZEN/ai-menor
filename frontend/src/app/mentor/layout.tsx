@@ -94,7 +94,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-2 md:p-4 custom-scrollbar rounded-3xl bg-[var(--glass-fill)] backdrop-blur-2xl border border-border/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
+        <div className="flex-1 overflow-y-auto p-2 md:p-4 custom-scrollbar rounded-3xl bg-[var(--glass-fill)] backdrop-blur-2xl border border-border/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] transform-gpu">
           {children}
         </div>
       </main>

@@ -43,7 +43,7 @@ export const TabsTrigger = ({ className, value, active, children, onClick }: { c
     if (onClick) onClick()
   }
   return (
-    <button onClick={handleClick} className={cn("inline-flex items-center justify-center whitespace-nowrap rounded-xl px-5 py-2 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main)] disabled:pointer-events-none disabled:opacity-50", isActive ? "bg-[var(--surface)] text-[var(--main)] shadow-[0_4px_15px_-3px_rgba(0,0,0,0.05),inset_0_1px_0_0_var(--border-highlight)] border border-[var(--border)]/50" : "hover:text-[var(--contrast)] hover:bg-[var(--glass-strong)]", className)}>{children}</button>
+    <button onClick={handleClick} className={cn("inline-flex items-center justify-center whitespace-nowrap rounded-xl px-5 py-2 text-sm font-semibold transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main)] disabled:pointer-events-none disabled:opacity-50", isActive ? "bg-[var(--surface)] text-[var(--main)] shadow-[0_4px_15px_-3px_rgba(0,0,0,0.05),inset_0_1px_0_0_var(--border-highlight)] border border-[var(--border)]/50" : "hover:text-[var(--contrast)] hover:bg-[var(--glass-strong)]", className)}>{children}</button>
   )
 }
 

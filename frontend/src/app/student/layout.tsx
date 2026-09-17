@@ -62,7 +62,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
       {/* Main Content */}
       <main className="flex-1 flex flex-col h-full overflow-hidden w-full relative z-10 gap-4">
         {/* Floating Header */}
-        <header className="h-16 shrink-0 relative floating-header flex items-center justify-between px-4 md:px-6 z-20">
+        <header className="h-16 shrink-0 relative floating-header flex items-center justify-between px-4 md:px-6 z-20 transform-gpu">
           <div className="flex items-center gap-3 md:hidden">
              <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1 hover:bg-[var(--main)]/10 rounded-lg transition-colors">
                <Menu size={24} />
@@ -93,7 +93,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-2 md:p-4 custom-scrollbar rounded-3xl bg-[var(--glass-fill)] backdrop-blur-2xl border border-border/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
+        <div className="flex-1 overflow-y-auto p-2 md:p-4 custom-scrollbar rounded-3xl bg-[var(--glass-fill)] backdrop-blur-2xl border border-border/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)] transform-gpu">
           {children}
         </div>
       </main>

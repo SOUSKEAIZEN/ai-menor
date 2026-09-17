@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, Manrope, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { CustomCursor } from "@/components/ui/CustomCursor";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-primary" });
 const manrope = Manrope({ subsets: ["latin"], variable: "--font-display" });
@@ -22,7 +21,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.variable} ${manrope.variable} ${dmSans.variable} antialiased selection:bg-main/30 selection:text-main font-primary`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <CustomCursor />
           {children}
         </ThemeProvider>
       </body>

@@ -9,7 +9,7 @@ function Badge({ className, variant = "default", ...props }: BadgeProps) {
   return (
     <div
       className={cn(
-        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-bold transition-all uppercase tracking-wider shadow-sm",
+        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-bold transition-[transform,box-shadow,background-color,border-color,color,opacity] uppercase tracking-wider shadow-sm",
         {
           "border-[var(--border-highlight)] bg-gradient-to-b from-[var(--main-light)] to-[var(--main)] text-white shadow-md": variant === "default",
           "border-[var(--border)] bg-[var(--glass-fill)] backdrop-blur-md text-[var(--contrast)]": variant === "secondary",

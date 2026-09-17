@@ -8,10 +8,10 @@ export const BrandLogo = ({ className, href = "/" }: { className?: string; href?
       {/* 3D Glass-Metal Logo Mark */}
       <div className="relative flex items-center justify-center w-10 h-10 perspective-container">
         {/* Ambient Glow behind the logo */}
-        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--main)] to-fuchsia-500 rounded-2xl blur-[10px] opacity-40 group-hover:opacity-80 group-hover:blur-[14px] transition-all duration-700 ease-out"></div>
+        <div className="absolute inset-0 bg-gradient-to-tr from-[var(--main)] to-fuchsia-500 rounded-2xl blur-[10px] opacity-40 group-hover:opacity-80 group-hover:blur-[14px] transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-700 ease-out"></div>
         
         {/* Main Logo Container with 3D transform */}
-        <div className="relative w-full h-full rounded-2xl bg-gradient-to-br from-white/40 to-white/5 dark:from-white/10 dark:to-white/0 border border-white/50 dark:border-white/10 backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(79,70,229,0.3),inset_0_1px_0_rgba(255,255,255,0.6)] flex items-center justify-center overflow-hidden transform-3d transition-all duration-700 ease-out group-hover:rotate-x-12 group-hover:-rotate-y-12 group-hover:scale-[1.05]">
+        <div className="relative w-full h-full rounded-2xl bg-gradient-to-br from-white/40 to-white/5 dark:from-white/10 dark:to-white/0 border border-white/50 dark:border-white/10 backdrop-blur-xl shadow-[0_4px_24px_-4px_rgba(79,70,229,0.3),inset_0_1px_0_rgba(255,255,255,0.6)] flex items-center justify-center overflow-hidden transform-3d transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-700 ease-out group-hover:rotate-x-12 group-hover:-rotate-y-12 group-hover:scale-[1.05]">
           
           {/* Robotic Silhouette */}
           <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 relative z-10 text-[var(--main)] dark:text-indigo-300 drop-shadow-[0_2px_4px_rgba(0,0,0,0.2)]">
@@ -40,7 +40,7 @@ export const BrandLogo = ({ className, href = "/" }: { className?: string; href?
       </div>
 
       {/* Typography */}
-      <span className="font-display font-extrabold text-[22px] tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-[var(--contrast)] to-[var(--main)] dark:from-white dark:to-indigo-300 drop-shadow-sm transition-all duration-300">
+      <span className="font-display font-extrabold text-[22px] tracking-tight bg-clip-text text-transparent bg-gradient-to-br from-[var(--contrast)] to-[var(--main)] dark:from-white dark:to-indigo-300 drop-shadow-sm transition-[transform,box-shadow,background-color,border-color,color,opacity] duration-300">
         AI mentor
       </span>
     </Link>
