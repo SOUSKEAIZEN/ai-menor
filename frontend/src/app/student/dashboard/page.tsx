@@ -1,22 +1,41 @@
+"use client";
+
 import React from 'react';
-import { BookOpen, Calendar, CheckSquare, Target, Clock, MessageSquare, AlertCircle } from 'lucide-react';
+import { BookOpen, Calendar, CheckSquare, Target, Clock, MessageSquare, AlertCircle, TrendingUp, AlertTriangle } from 'lucide-react';
 import Link from 'next/link';
+import { useDemoStore } from '../../../store/demo-state';
 
 export default function Dashboard() {
+  const { user, subjects, tasks, goals, mentor } = useDemoStore();
+
+  const activeGoals = goals.filter(g => g.status === 'Active').length;
+  const pendingTasks = tasks.filter(t => t.status !== 'Completed').length;
+  const overdueTasks = tasks.filter(t => t.status === 'Overdue').length;
+  const completedTasksThisWeek = tasks.filter(t => t.status === 'Completed').length;
+
+  const needsAttentionSubjects = subjects.filter(s => s.status === 'Needs Attention');
+
+  const priorities = [
+    ...tasks.filter(t => t.status === 'Overdue').map(t => ({ title: t.title, time: `Overdue - ${t.due}`, type: 'Task', urgent: true })),
+    ...tasks.filter(t => t.status === 'Pending' && t.due.toLowerCase().includes('today')).map(t => ({ title: t.title, time: `Due ${t.due}`, type: 'Task', urgent: true })),
+    ...needsAttentionSubjects.map(s => ({ title: `Review ${s.name} Concepts`, time: 'Recommended', type: 'AI Suggestion', urgent: false })),
+    ...goals.filter(g => g.status === 'Active').map(g => ({ title: `Goal Progress: ${g.title}`, time: 'Ongoing', type: 'Goal', urgent: false }))
+  ].slice(0, 4);
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       <header className="flex flex-col gap-2">
-        <h1 className="text-3xl font-bold text-[var(--main)]">Good morning, ABC</h1>
-        <p className="text-[var(--muted)]">Here's your academic overview.</p>
+        <h1 className="text-3xl font-bold text-[var(--main)]">Good morning, {user.name.split(' ')[0]}</h1>
+        <p className="text-[var(--muted)]">Here&apos;s your academic overview.</p>
       </header>
       
       {/* Top statistics */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {[ 
-          { title: 'Academic Progress', value: '85%', icon: BookOpen, trend: '+2% this week' },
-          { title: 'Attendance', value: '92%', icon: Calendar, trend: 'On track' },
-          { title: 'Active Goals', value: '3', icon: Target, trend: '2 completing soon' },
-          { title: 'Pending Tasks', value: '5', icon: CheckSquare, trend: '1 overdue' }
+          { title: 'Academic Progress', value: user.gpa + ' GPA', icon: BookOpen, trend: 'Stable' },
+          { title: 'Attendance', value: `${user.overallAttendance}%`, icon: Calendar, trend: 'On track' },
+          { title: 'Active Goals', value: activeGoals.toString(), icon: Target, trend: 'Keep it up' },
+          { title: 'Pending Tasks', value: pendingTasks.toString(), icon: CheckSquare, trend: overdueTasks > 0 ? `${overdueTasks} overdue` : 'All on time' }
         ].map(stat => (
           <div key={stat.title} className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm hover:shadow-md transition-shadow">
             <div className="flex items-center justify-between mb-4">
@@ -31,14 +50,50 @@ export default function Dashboard() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
         <div className="lg:col-span-2 space-y-8">
-          {/* Performance Overview */}
-          <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
-            <h2 className="text-xl font-semibold mb-6 text-[var(--contrast)]">Performance Overview</h2>
-            <div className="h-72 flex flex-col items-center justify-center border-2 border-dashed border-[var(--border)] rounded-xl bg-[var(--fade)] text-[var(--muted)]">
-              <LineChart className="w-8 h-8 mb-2 opacity-50" />
-              <p>No data yet</p>
-            </div>
-          </section>
+          
+          {/* Weekly Review & AI Insights */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
+              <div className="flex items-center gap-2 mb-4">
+                <TrendingUp className="w-5 h-5 text-green-500" />
+                <h2 className="text-xl font-semibold text-[var(--contrast)]">Weekly Review</h2>
+              </div>
+              <div className="space-y-4">
+                <div className="flex justify-between items-center text-sm border-b border-[var(--border)] pb-2">
+                  <span className="text-[var(--muted)]">Tasks Completed</span>
+                  <span className="font-medium text-[var(--contrast)]">{completedTasksThisWeek}</span>
+                </div>
+                <div className="flex justify-between items-center text-sm border-b border-[var(--border)] pb-2">
+                  <span className="text-[var(--muted)]">Goals Progressed</span>
+                  <span className="font-medium text-[var(--contrast)]">{activeGoals}</span>
+                </div>
+                <div>
+                  <p className="text-sm text-[var(--muted)] mb-1">What improved:</p>
+                  <p className="text-sm font-medium text-[var(--contrast)]">{subjects.find(s => s.status === 'Strong')?.name || 'Overall consistency'}</p>
+                </div>
+              </div>
+            </section>
+
+            <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm relative overflow-hidden">
+              <div className="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                <AlertTriangle className="w-24 h-24" />
+              </div>
+              <div className="flex items-center gap-2 mb-4">
+                <AlertCircle className="w-5 h-5 text-amber-500" />
+                <h2 className="text-xl font-semibold text-[var(--contrast)]">AI Insight</h2>
+              </div>
+              <div className="space-y-3 relative z-10">
+                <p className="text-sm text-[var(--contrast)] leading-relaxed">
+                  Your performance in <span className="font-bold text-[var(--main)]">{needsAttentionSubjects[0]?.name || 'some areas'}</span> has dropped recently. 
+                  Attendance is at {needsAttentionSubjects[0]?.attendance || 0}% and current progress is lagging.
+                </p>
+                <div className="p-3 bg-[var(--fade)] rounded-lg border border-[var(--border)] mt-2">
+                  <p className="text-xs text-[var(--muted)]">Recommendation:</p>
+                  <p className="text-sm font-medium text-[var(--contrast)] mt-1">Focus on {needsAttentionSubjects[0]?.topics?.[0]?.name || 'upcoming topics'} this weekend to catch up.</p>
+                </div>
+              </div>
+            </section>
+          </div>
 
           {/* Subject Overview */}
           <section>
@@ -47,13 +102,8 @@ export default function Dashboard() {
               <Link href="/student/subjects" className="text-sm font-medium text-[var(--main)] hover:underline">View All</Link>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                { name: 'Database Management', code: 'CS301', progress: 75, att: 90 },
-                { name: 'Operating Systems', code: 'CS302', progress: 60, att: 85 },
-                { name: 'Computer Networks', code: 'CS303', progress: 85, att: 95 }
-              ].map(sub => (
+              {subjects.map(sub => (
                 <div key={sub.code} className="p-5 border border-[var(--border)] rounded-xl bg-[var(--surface)] hover:border-[var(--main)] transition-colors group relative">
-                  <span className="absolute top-3 right-3 text-xs bg-[var(--fade)] text-[var(--muted)] px-2 py-1 rounded-md">Demo</span>
                   <h3 className="font-semibold text-lg text-[var(--contrast)]">{sub.name}</h3>
                   <p className="text-sm text-[var(--muted)] mb-4">{sub.code}</p>
                   <div className="space-y-3">
@@ -74,14 +124,10 @@ export default function Dashboard() {
         <div className="space-y-8">
           {/* Today's Priorities */}
           <section className="p-6 rounded-2xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
-            <h2 className="text-xl font-semibold mb-6 text-[var(--contrast)]">Today's Priorities</h2>
+            <h2 className="text-xl font-semibold mb-6 text-[var(--contrast)]">Today&apos;s Priorities</h2>
             <div className="space-y-4">
-              {[
-                { title: 'Complete OS Assignment', time: 'Due 11:59 PM', type: 'Task', urgent: true },
-                { title: 'Review DBMS Chapter 4', time: 'Recommended', type: 'AI Suggestion', urgent: false },
-                { title: 'Goal Milestone: 80% in CN', time: 'Ongoing', type: 'Goal', urgent: false }
-              ].map((rec, i) => (
-                <div key={i} className="flex gap-4 p-4 border border-[var(--border)] rounded-xl bg-[var(--fade)]">
+              {priorities.map((rec, i) => (
+                <div key={i} className="flex gap-4 p-4 border border-[var(--border)] rounded-xl bg-[var(--fade)] cursor-pointer hover:border-[var(--main)] transition-colors">
                   <div className="mt-1">
                     {rec.urgent ? <AlertCircle className="w-5 h-5 text-red-500" /> : <CheckSquare className="w-5 h-5 text-[var(--main)]" />}
                   </div>
@@ -91,6 +137,9 @@ export default function Dashboard() {
                   </div>
                 </div>
               ))}
+              {priorities.length === 0 && (
+                <p className="text-sm text-[var(--muted)] text-center py-4">You&apos;re all caught up for today!</p>
+              )}
             </div>
           </section>
 
@@ -99,16 +148,16 @@ export default function Dashboard() {
             <h2 className="text-xl font-semibold mb-6 text-[var(--contrast)]">Your Mentor</h2>
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-[var(--main)] text-white flex items-center justify-center font-bold text-lg">
-                EK
+                {mentor.name.split(' ').map(n => n[0]).join('')}
               </div>
               <div>
-                <h3 className="font-semibold text-[var(--contrast)]">ESHA KHANNA</h3>
-                <p className="text-xs text-[var(--muted)]">Computer Science Dept</p>
+                <h3 className="font-semibold text-[var(--contrast)]">{mentor.name}</h3>
+                <p className="text-xs text-[var(--muted)]">{mentor.department}</p>
               </div>
             </div>
             <div className="p-4 bg-[var(--fade)] rounded-xl text-sm text-[var(--contrast)] mb-4">
               <p className="font-medium mb-1">Next Meeting</p>
-              <p className="text-[var(--muted)] flex items-center gap-2"><Clock className="w-4 h-4" /> Tomorrow, 2:00 PM</p>
+              <p className="text-[var(--muted)] flex items-center gap-2"><Clock className="w-4 h-4" /> {mentor.nextMeeting}</p>
             </div>
             <button className="w-full py-2.5 bg-[var(--main)] text-white text-sm font-medium rounded-xl flex items-center justify-center gap-2 hover:opacity-90 transition-opacity">
               <MessageSquare className="w-4 h-4" />
@@ -119,9 +168,4 @@ export default function Dashboard() {
       </div>
     </div>
   );
-}
-
-// Dummy for LineChart icon since we imported it in previous file but not here
-function LineChart(props: any) {
-  return <svg {...props} xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>;
 }

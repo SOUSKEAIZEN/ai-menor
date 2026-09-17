@@ -1,8 +1,12 @@
+"use client";
 import React from 'react';
-import { Target, Plus, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Target, Plus } from 'lucide-react';
 import Link from 'next/link';
+import { useDemoStore } from '@/store/demo-state';
 
 export default function Goals() {
+  const goals = useDemoStore((state) => state.goals);
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       <header className="flex justify-between items-end">
@@ -16,27 +20,23 @@ export default function Goals() {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          { id: 1, title: 'Achieve 4.0 GPA this Semester', desc: 'Maintain top grades in all core subjects to qualify for the Dean\'s List.', prog: 65, dl: 'Dec 15', ms: 3 },
-          { id: 2, title: 'Master React & Next.js', desc: 'Build 3 full-stack projects using modern web technologies.', prog: 40, dl: 'Nov 30', ms: 2 },
-          { id: 3, title: '100% Attendance in OS', desc: 'Do not miss a single Operating Systems class this month.', prog: 90, dl: 'Oct 31', ms: 4 }
-        ].map(goal => (
+        {goals.map(goal => (
           <Link key={goal.id} href={`/student/goals/${goal.id}`} className="block group">
             <div className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)] hover:border-[var(--main)] hover:shadow-md transition-all h-full flex flex-col">
               <div className="w-12 h-12 rounded-xl bg-[var(--main)]/10 text-[var(--main)] flex items-center justify-center mb-4">
                 <Target className="w-6 h-6" />
               </div>
               <h3 className="text-lg font-bold text-[var(--contrast)] mb-2 group-hover:text-[var(--main)] transition-colors">{goal.title}</h3>
-              <p className="text-sm text-[var(--muted)] mb-6 line-clamp-2">{goal.desc}</p>
+              <p className="text-sm text-[var(--muted)] mb-6 line-clamp-2">{goal.description}</p>
               
               <div className="mt-auto space-y-4">
                 <div className="flex items-center justify-between text-xs text-[var(--muted)]">
-                  <span>{goal.ms} Milestones</span>
-                  <span>Due {goal.dl}</span>
+                  <span>{goal.milestones.length} Milestones</span>
+                  <span>Due {goal.deadline}</span>
                 </div>
                 <div>
-                  <div className="flex justify-between text-xs mb-1.5"><span className="text-[var(--muted)]">Progress</span><span className="font-medium text-[var(--contrast)]">{goal.prog}%</span></div>
-                  <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden"><div className="h-full bg-[var(--main)]" style={{ width: `${goal.prog}%` }} /></div>
+                  <div className="flex justify-between text-xs mb-1.5"><span className="text-[var(--muted)]">Progress</span><span className="font-medium text-[var(--contrast)]">{goal.progress}%</span></div>
+                  <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden"><div className="h-full bg-[var(--main)] transition-all duration-300" style={{ width: `${goal.progress}%` }} /></div>
                 </div>
               </div>
             </div>

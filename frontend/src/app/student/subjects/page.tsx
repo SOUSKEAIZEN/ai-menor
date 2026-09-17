@@ -1,8 +1,15 @@
+"use client";
+
 import React from 'react';
-import { Search, Filter, Plus, BookOpen, Clock, BarChart2, ChevronRight } from 'lucide-react';
+import { Search, Filter, Plus, BookOpen, Clock, BarChart2 } from 'lucide-react';
 import Link from 'next/link';
+import { useDemoStore } from '@/store/demo-state';
+
+const COLORS = ['bg-blue-500', 'bg-purple-500', 'bg-emerald-500', 'bg-orange-500', 'bg-pink-500'];
 
 export default function Subjects() {
+  const { subjects } = useDemoStore();
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -25,38 +32,36 @@ export default function Subjects() {
       </header>
       
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          { id: 'CS301', name: 'Database Management', credits: 4, progress: 75, att: 90, color: 'bg-blue-500' },
-          { id: 'CS302', name: 'Operating Systems', credits: 4, progress: 60, att: 85, color: 'bg-purple-500' },
-          { id: 'CS303', name: 'Computer Networks', credits: 3, progress: 85, att: 95, color: 'bg-emerald-500' },
-          { id: 'CS304', name: 'Data Structures', credits: 4, progress: 90, att: 100, color: 'bg-orange-500' }
-        ].map(sub => (
-          <Link key={sub.id} href={`/student/subjects/${sub.id}`} className="block group">
-            <div className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)] hover:border-[var(--main)] hover:shadow-md transition-all h-full flex flex-col relative overflow-hidden">
-              <div className={`absolute top-0 left-0 w-full h-1 ${sub.color}`}></div>
-              <div className="flex justify-between items-start mb-6">
-                <div className="w-12 h-12 rounded-xl bg-[var(--fade)] flex items-center justify-center text-[var(--contrast)] group-hover:bg-[var(--main)]/10 group-hover:text-[var(--main)] transition-colors">
-                  <BookOpen className="w-6 h-6" />
+        {subjects.map((sub, index) => {
+          const color = COLORS[index % COLORS.length];
+          return (
+            <Link key={sub.id} href={`/student/subjects/${sub.id}`} className="block group">
+              <div className="p-6 border border-[var(--border)] rounded-2xl bg-[var(--surface)] hover:border-[var(--main)] hover:shadow-md transition-all h-full flex flex-col relative overflow-hidden">
+                <div className={`absolute top-0 left-0 w-full h-1 ${color}`}></div>
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-12 h-12 rounded-xl bg-[var(--fade)] flex items-center justify-center text-[var(--contrast)] group-hover:bg-[var(--main)]/10 group-hover:text-[var(--main)] transition-colors">
+                    <BookOpen className="w-6 h-6" />
+                  </div>
+                  <span className="px-2.5 py-1 bg-[var(--fade)] text-[var(--muted)] text-xs font-medium rounded-lg">{sub.code}</span>
                 </div>
-                <span className="px-2.5 py-1 bg-[var(--fade)] text-[var(--muted)] text-xs font-medium rounded-lg">{sub.id}</span>
-              </div>
-              
-              <h3 className="text-lg font-bold text-[var(--contrast)] mb-1 group-hover:text-[var(--main)] transition-colors">{sub.name}</h3>
-              <p className="text-sm text-[var(--muted)] mb-6">{sub.credits} Credits • Core Subject</p>
-              
-              <div className="mt-auto space-y-4">
-                <div>
-                  <div className="flex justify-between text-xs mb-1.5"><span className="text-[var(--muted)] flex items-center gap-1"><BarChart2 className="w-3 h-3"/> Progress</span><span className="font-medium text-[var(--contrast)]">{sub.progress}%</span></div>
-                  <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden"><div className="h-full bg-[var(--main)]" style={{ width: `${sub.progress}%` }} /></div>
-                </div>
-                <div>
-                  <div className="flex justify-between text-xs mb-1.5"><span className="text-[var(--muted)] flex items-center gap-1"><Clock className="w-3 h-3"/> Attendance</span><span className="font-medium text-[var(--contrast)]">{sub.att}%</span></div>
-                  <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden"><div className="h-full bg-green-500" style={{ width: `${sub.att}%` }} /></div>
+                
+                <h3 className="text-lg font-bold text-[var(--contrast)] mb-1 group-hover:text-[var(--main)] transition-colors">{sub.name}</h3>
+                <p className="text-sm text-[var(--muted)] mb-6">{sub.credits} Credits • Core Subject</p>
+                
+                <div className="mt-auto space-y-4">
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5"><span className="text-[var(--muted)] flex items-center gap-1"><BarChart2 className="w-3 h-3"/> Progress</span><span className="font-medium text-[var(--contrast)]">{sub.progress}%</span></div>
+                    <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden"><div className={`h-full ${color}`} style={{ width: `${sub.progress}%` }} /></div>
+                  </div>
+                  <div>
+                    <div className="flex justify-between text-xs mb-1.5"><span className="text-[var(--muted)] flex items-center gap-1"><Clock className="w-3 h-3"/> Attendance</span><span className="font-medium text-[var(--contrast)]">{sub.attendance}%</span></div>
+                    <div className="h-2 w-full bg-[var(--fade)] rounded-full overflow-hidden"><div className="h-full bg-green-500" style={{ width: `${sub.attendance}%` }} /></div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Link>
-        ))}
+            </Link>
+          );
+        })}
       </div>
     </div>
   );

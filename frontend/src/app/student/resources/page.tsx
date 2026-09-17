@@ -1,7 +1,20 @@
+'use client';
 import React from 'react';
-import { Search, Filter, BookOpen, Video, FileText, Download, ExternalLink } from 'lucide-react';
+import { Search, Filter, BookOpen, Video, FileText, Download, ExternalLink, Bookmark } from 'lucide-react';
+import { useDemoStore } from '../../../store/demo-state';
 
 export default function Resources() {
+  const { resources, toggleResourceSaved } = useDemoStore();
+
+  const getIcon = (type: string) => {
+    switch(type) {
+      case 'Video': return <Video className="w-8 h-8 text-blue-500" />;
+      case 'Article': return <FileText className="w-8 h-8 text-red-500" />;
+      case 'Interactive': return <BookOpen className="w-8 h-8 text-orange-500" />;
+      default: return <FileText className="w-8 h-8 text-gray-500" />;
+    }
+  };
+
   return (
     <div className="space-y-8 max-w-7xl mx-auto pb-12">
       <header className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -21,18 +34,19 @@ export default function Resources() {
       </header>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-        {[
-          { title: 'Advanced SQL Queries', sub: 'CS301', type: 'Video', icon: Video, color: 'text-blue-500' },
-          { title: 'Deadlock Prevention Notes', sub: 'CS302', type: 'PDF', icon: FileText, color: 'text-red-500' },
-          { title: 'OS concepts Textbook', sub: 'CS302', type: 'Book', icon: BookOpen, color: 'text-orange-500' },
-          { title: 'Networking Subnetting', sub: 'CS303', type: 'Video', icon: Video, color: 'text-blue-500' }
-        ].map((res, i) => (
-          <div key={i} className="group p-5 border border-[var(--border)] rounded-2xl bg-[var(--surface)] hover:border-[var(--main)] transition-all">
+        {resources.map((res) => (
+          <div key={res.id} className="group relative p-5 border border-[var(--border)] rounded-2xl bg-[var(--surface)] hover:border-[var(--main)] transition-all">
+            <button 
+              onClick={() => toggleResourceSaved(res.id)}
+              className="absolute top-4 right-4 z-10 p-2 rounded-full bg-[var(--surface)]/80 backdrop-blur-sm hover:bg-[var(--fade)] transition-colors"
+            >
+              <Bookmark className={`w-4 h-4 ${res.saved ? 'fill-[var(--main)] text-[var(--main)]' : 'text-[var(--muted)]'}`} />
+            </button>
             <div className="w-full h-32 bg-[var(--fade)] rounded-xl mb-4 flex items-center justify-center text-[var(--muted)] group-hover:bg-[var(--main)]/5 transition-colors">
-              <res.icon className={`w-8 h-8 ${res.color}`} />
+              {getIcon(res.type)}
             </div>
             <h3 className="font-semibold text-[var(--contrast)] mb-1 truncate" title={res.title}>{res.title}</h3>
-            <p className="text-xs text-[var(--muted)] mb-4">{res.sub} • {res.type}</p>
+            <p className="text-xs text-[var(--muted)] mb-4">{res.subjectId.toUpperCase()} • {res.type}</p>
             <div className="flex gap-2">
               <button className="flex-1 py-1.5 bg-[var(--main)] text-white text-xs font-medium rounded-lg hover:opacity-90 flex items-center justify-center gap-1"><ExternalLink className="w-3 h-3"/> Open</button>
               <button className="px-3 py-1.5 border border-[var(--border)] text-[var(--muted)] hover:text-[var(--main)] rounded-lg transition-colors"><Download className="w-3 h-3"/></button>
