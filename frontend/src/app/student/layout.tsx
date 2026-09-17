@@ -74,7 +74,7 @@ export default function StudentLayout({ children }: { children: React.ReactNode 
              <div className="w-px h-6 bg-border/40 hidden md:block"></div>
              <div className="relative group focus-within:z-50">
                <button className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--main)] to-indigo-700 text-white flex items-center justify-center text-sm font-bold shadow-md cursor-pointer hover:shadow-lg transition-all hover:scale-105">A</button>
-               <div className="absolute right-0 top-full mt-2 w-56 bg-[var(--surface)]/90 backdrop-blur-xl border border-border/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 origin-top-right scale-95 group-hover:scale-100 group-focus-within:scale-100 z-50">
+               <div className="absolute right-0 top-full mt-2 w-56 bg-surface backdrop-blur-xl border border-border/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 origin-top-right scale-95 group-hover:scale-100 group-focus-within:scale-100 z-50">
                   <div className="p-4 border-b border-border/40 bg-[var(--main)]/5 rounded-t-xl">
                      <p className="font-bold text-[var(--contrast)] text-sm">ABC</p>
                      <p className="text-xs text-[var(--muted)] mt-0.5">abc@university.edu</p>

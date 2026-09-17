@@ -173,32 +173,32 @@ interface DemoState {
 export const useDemoStore = create<DemoState>((set) => ({
 
   mentees: [
-    { id: 'm1', name: 'ABC', gpa: '3.8', attendance: 92, trend: 'stable', status: 'On Track', aiBrief: 'Consistent performer. Ready for advanced topic introduction.' },
-    { id: 'm2', name: 'John Doe', gpa: '2.4', attendance: 65, trend: 'down', status: 'At Risk', aiBrief: 'Significant drop in OS & DBMS attendance. Missed last 2 assignments.' },
-    { id: 'm3', name: 'Sarah Smith', gpa: '3.1', attendance: 88, trend: 'up', status: 'Needs Attention', aiBrief: 'Improving in attendance, but struggling with Data Structures graphs.' },
-    { id: 'm4', name: 'Michael Chen', gpa: '3.9', attendance: 98, trend: 'stable', status: 'Excelling', aiBrief: 'Exceeding expectations. Recommended for TA role next semester.' }
+    { id: 'm1', name: 'ABC 1', gpa: '3.8', attendance: 92, trend: 'stable', status: 'On Track', aiBrief: 'Consistent performer. Ready for advanced topic introduction.' },
+    { id: 'm2', name: 'ABC 2', gpa: '2.4', attendance: 65, trend: 'down', status: 'At Risk', aiBrief: 'Significant drop in OS & DBMS attendance. Missed last 2 assignments.' },
+    { id: 'm3', name: 'ABC 3', gpa: '3.1', attendance: 88, trend: 'up', status: 'Needs Attention', aiBrief: 'Improving in attendance, but struggling with Data Structures graphs.' },
+    { id: 'm4', name: 'ABC 4', gpa: '3.9', attendance: 98, trend: 'stable', status: 'Excelling', aiBrief: 'Exceeding expectations. Recommended for TA role next semester.' }
   ],
   mentoringPriorities: [
-    { id: 'p1', menteeId: 'm2', menteeName: 'John Doe', type: 'Attendance', suggestion: 'Schedule a 1:1 review & Follow up on attendance', evidence: 'Attendance dropped below 70% threshold. Missed 4 consecutive OS lectures.', status: 'Pending' },
-    { id: 'p2', menteeId: 'm3', menteeName: 'Sarah Smith', type: 'Academic', suggestion: 'Consider tutoring support', evidence: 'Failed last Data Structures quiz on Graphs (45%).', status: 'Pending' },
-    { id: 'p3', menteeId: 'm4', menteeName: 'Michael Chen', type: 'General', suggestion: 'Student has improved—continue current plan', evidence: 'Scored 98% on DBMS midterm.', status: 'Pending' },
+    { id: 'p1', menteeId: 'm2', menteeName: 'ABC 2', type: 'Attendance', suggestion: 'Schedule a 1:1 review & Follow up on attendance', evidence: 'Attendance dropped below 70% threshold. Missed 4 consecutive OS lectures.', status: 'Pending' },
+    { id: 'p2', menteeId: 'm3', menteeName: 'ABC 3', type: 'Academic', suggestion: 'Consider tutoring support', evidence: 'Failed last Data Structures quiz on Graphs (45%).', status: 'Pending' },
+    { id: 'p3', menteeId: 'm4', menteeName: 'ABC 4', type: 'General', suggestion: 'Student has improved—continue current plan', evidence: 'Scored 98% on DBMS midterm.', status: 'Pending' },
   ],
   mentorMeetings: [
-    { id: 'mtg1', menteeName: 'Sarah Smith', date: 'Today', time: '2:30 PM', type: 'Online', location: 'Zoom Room A', purpose: 'Data Structures review', status: 'Scheduled' },
-    { id: 'mtg2', menteeName: 'John Doe', date: 'Tomorrow', time: '10:00 AM', type: 'Campus', location: 'Mentoring Office 3B', purpose: 'Attendance Intervention', status: 'Scheduled' },
-    { id: 'mtg3', menteeName: 'ABC', date: 'Tomorrow', time: '2:00 PM', type: 'Online', location: 'Google Meet', purpose: 'Career Planning', status: 'Scheduled' }
+    { id: 'mtg1', menteeName: 'ABC 3', date: 'Today', time: '2:30 PM', type: 'Online', location: 'Zoom Room A', purpose: 'Data Structures review', status: 'Scheduled' },
+    { id: 'mtg2', menteeName: 'ABC 2', date: 'Tomorrow', time: '10:00 AM', type: 'Campus', location: 'Mentoring Office 3B', purpose: 'Attendance Intervention', status: 'Scheduled' },
+    { id: 'mtg3', menteeName: 'ABC 1', date: 'Tomorrow', time: '2:00 PM', type: 'Online', location: 'Google Meet', purpose: 'Career Planning', status: 'Scheduled' }
   ],
   mentorFollowUps: [
-    { id: 'f1', menteeName: 'John Doe', task: 'Send academic warning email', dueDate: 'Yesterday', status: 'Overdue' },
-    { id: 'f2', menteeName: 'Sarah Smith', task: 'Check if tutoring was attended', dueDate: 'Today, 5:00 PM', status: 'Pending' },
+    { id: 'f1', menteeName: 'ABC 2', task: 'Send academic warning email', dueDate: 'Yesterday', status: 'Overdue' },
+    { id: 'f2', menteeName: 'ABC 3', task: 'Check if tutoring was attended', dueDate: 'Today, 5:00 PM', status: 'Pending' },
   ],
   interventionOutcomes: [
-    { id: 'o1', menteeName: 'Jane Wilson', intervention: 'Assigned Peer Tutor for OS', date: 'Last Week', outcome: 'Passed OS Midterm (+15% improvement)', status: 'Positive' },
-    { id: 'o2', menteeName: 'Alex Brown', intervention: 'Time Management Workshop', date: '2 Weeks Ago', outcome: 'No change in missed assignments yet', status: 'Neutral' },
+    { id: 'o1', menteeName: 'ABC 5', intervention: 'Assigned Peer Tutor for OS', date: 'Last Week', outcome: 'Passed OS Midterm (+15% improvement)', status: 'Positive' },
+    { id: 'o2', menteeName: 'ABC 6', intervention: 'Time Management Workshop', date: '2 Weeks Ago', outcome: 'No change in missed assignments yet', status: 'Neutral' },
   ],
 
   user: {
-    name: 'ABC',
+    name: 'ABC 1',
     email: 'abc@university.edu',
     gpa: '3.8',
     overallAttendance: 92,
