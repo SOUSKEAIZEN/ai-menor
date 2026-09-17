@@ -50,10 +50,10 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       </div>
 
       {/* Auth Side */}
-      <div className="w-full lg:w-1/2 flex items-center justify-center p-6 sm:p-12">
+      <div className="w-full lg:w-1/2 flex items-center justify-center p-4 py-8 sm:p-12">
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
-          <div className="flex lg:hidden justify-center mb-8">
+          <div className="flex lg:hidden justify-center mb-4">
             <BrandLogo className="scale-90" />
           </div>
           

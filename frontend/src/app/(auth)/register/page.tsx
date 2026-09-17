@@ -6,13 +6,13 @@ import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 
 export default function RegisterPage() {
   return (
-    <div className="space-y-6">
-      <div className="text-center sm:text-left space-y-2 mb-8">
+    <div className="space-y-4 flex flex-col justify-center h-full">
+      <div className="text-center sm:text-left space-y-1 mb-4">
         <h1 className="text-3xl font-bold tracking-tight">Create an account</h1>
         <p className="text-[var(--muted)]">Enter your details below to create your account</p>
       </div>
 
-      <div className="grid grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2">
         <Button variant="outline" className="w-full">
           Student
         </Button>
@@ -21,8 +21,8 @@ export default function RegisterPage() {
         </Button>
       </div>
 
-      <div className="space-y-4 mt-6">
-        <div className="space-y-2">
+      <div className="space-y-3 mt-3">
+        <div className="space-y-1.5">
           <label className="text-sm font-medium leading-none" htmlFor="name">
             Full Name
           </label>
@@ -31,7 +31,7 @@ export default function RegisterPage() {
             <Input id="name" placeholder="ABC" type="text" className="pl-9" />
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <label className="text-sm font-medium leading-none" htmlFor="email">
             Email
           </label>
@@ -40,7 +40,7 @@ export default function RegisterPage() {
             <Input id="email" placeholder="name@example.com" type="email" className="pl-9" />
           </div>
         </div>
-        <div className="space-y-2">
+        <div className="space-y-1.5">
           <label className="text-sm font-medium leading-none" htmlFor="password">
             Password
           </label>
@@ -50,7 +50,7 @@ export default function RegisterPage() {
           </div>
         </div>
         
-        <Button className="w-full mt-6" size="lg" asChild>
+        <Button className="w-full mt-4" size="default" asChild>
           <Link href="/verify-email">
             Create Account
             <ArrowRight className="ml-2 h-4 w-4" />
@@ -58,7 +58,7 @@ export default function RegisterPage() {
         </Button>
       </div>
 
-      <p className="px-8 text-center text-sm text-[var(--muted)] mt-8">
+      <p className="px-2 text-center text-xs text-[var(--muted)] mt-4 leading-relaxed">
         By clicking continue, you agree to our{' '}
         <Link href="/terms" className="underline underline-offset-4 hover:text-[var(--main)]">
           Terms of Service
@@ -70,7 +70,7 @@ export default function RegisterPage() {
         .
       </p>
 
-      <p className="px-8 text-center text-sm text-[var(--muted)]">
+      <p className="px-2 text-center text-sm text-[var(--muted)] mt-2">
         Already have an account?{' '}
         <Link href="/login" className="font-medium text-[var(--main)] hover:underline">
           Sign in

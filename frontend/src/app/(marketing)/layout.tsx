@@ -5,27 +5,12 @@ import { Button } from '@/components/ui/Button';
 
 import { ThemeToggle } from '@/components/ThemeToggle';
 import { BrandLogo } from '@/components/ui/BrandLogo';
+import MarketingHeader from './MarketingHeader';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)] text-[var(--main)] font-sans">
-      <header className="fixed top-4 left-4 right-4 z-50 floating-header flex items-center justify-between px-6 mx-auto max-w-7xl">
-        <div className="w-full h-16 flex items-center justify-between">
-          <BrandLogo />
-          <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-[var(--muted)]">
-            <Link href="/features" className="hover:text-[var(--main)] transition-colors">Features</Link>
-            <Link href="/how-it-works" className="hover:text-[var(--main)] transition-colors">How it Works</Link>
-            <Link href="/for-students" className="hover:text-[var(--main)] transition-colors">Students</Link>
-            <Link href="/for-mentors" className="hover:text-[var(--main)] transition-colors">Mentors</Link>
-            <Link href="/about" className="hover:text-[var(--main)] transition-colors">About</Link>
-          </nav>
-          <div className="flex items-center space-x-4">
-            <ThemeToggle />
-            
-            
-          </div>
-        </div>
-      </header>
+      <MarketingHeader />
       
       <main className="flex-1 pt-24">
         {children}
