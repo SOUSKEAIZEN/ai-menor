@@ -44,7 +44,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
               const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
               return (
                 <li key={item.label}>
-                  <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className={`group relative flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-300 ${isActive ? 'bg-[var(--main)]/10 text-[var(--main)] shadow-sm backdrop-blur-md' : 'text-[var(--contrast)] hover:bg-[var(--main)]/5 hover:text-[var(--main)] hover:translate-x-1'}`}>
+                  <Link href={item.href} onClick={() => setMobileMenuOpen(false)} className={`group relative flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-bold transition-all duration-400 ease-out ${isActive ? "bg-[var(--surface)] text-[var(--main)] shadow-[0_8px_20px_-4px_rgba(0,0,0,0.05),inset_0_1px_0_0_var(--border-highlight)] border border-[var(--border)]" : "text-[var(--contrast)] hover:bg-[var(--glass-strong)] hover:text-[var(--main-light)]"}`}>
                     {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[var(--main)] rounded-r-full shadow-[0_0_8px_var(--main)]" />}
                     <item.icon size={20} className={`transition-transform duration-300 ${isActive ? 'text-[var(--main)] scale-110' : 'text-[var(--muted)] group-hover:text-[var(--main)] group-hover:scale-110'}`} />
                     <span>{item.label}</span>
@@ -75,7 +75,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
               <div className="w-px h-6 bg-border/40 hidden md:block"></div>
               <div className="relative group focus-within:z-50">
                <button className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--main)] to-indigo-700 text-white flex items-center justify-center text-sm font-bold shadow-md cursor-pointer hover:shadow-lg transition-all hover:scale-105">EK</button>
-               <div className="absolute right-0 top-full mt-2 w-56 bg-surface backdrop-blur-xl border border-border/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 origin-top-right scale-95 group-hover:scale-100 group-focus-within:scale-100 z-50">
+               <div className="absolute right-0 top-full mt-2 w-64 bg-[var(--surface)] backdrop-blur-3xl border border-border/60 shadow-[0_16px_40px_-10px_rgba(0,0,0,0.1)] rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 origin-top-right scale-95 group-hover:scale-100 group-focus-within:scale-100 z-50">
                   <div className="p-4 border-b border-border/40 bg-[var(--main)]/5 rounded-t-xl">
                      <p className="font-bold text-[var(--contrast)] text-sm">ESHA KHANNA</p>
                      <p className="text-xs text-[var(--muted)] mt-0.5">esha.k@university.edu</p>
@@ -93,7 +93,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
         </header>
 
         {/* Page Content */}
-        <div className="flex-1 overflow-y-auto p-2 md:p-4 custom-scrollbar rounded-3xl bg-[var(--surface)]/30 backdrop-blur-sm border border-border/20 shadow-inner">
+        <div className="flex-1 overflow-y-auto p-2 md:p-4 custom-scrollbar rounded-3xl bg-[var(--glass-fill)] backdrop-blur-2xl border border-border/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.02)]">
           {children}
         </div>
       </main>

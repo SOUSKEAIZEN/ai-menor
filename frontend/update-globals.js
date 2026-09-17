@@ -1,3 +1,6 @@
+const fs = require('fs');
+
+const cssContent = \`
 @import "tailwindcss";
 
 @theme {
@@ -13,7 +16,6 @@
   --color-border-highlight: var(--border-highlight);
   --color-muted: var(--muted);
   --color-glass-fill: var(--glass-fill);
-  --color-glass-strong: var(--glass-strong);
 
   --font-primary: var(--font-primary);
   --font-display: var(--font-display);
@@ -39,7 +41,6 @@
   --border-highlight: rgba(255, 255, 255, 0.6);
   --muted: #64748B;
   --glass-fill: rgba(255, 255, 255, 0.7);
-  --glass-strong: rgba(255, 255, 255, 0.9);
 }
 
 .dark {
@@ -52,10 +53,9 @@
   --surface: #0A0A0F;
   --elevated: #12121A;
   --border: rgba(255, 255, 255, 0.08);
-  --border-highlight: rgba(255, 255, 255, 0.05);
+  --border-highlight: rgba(255, 255, 255, 0.1);
   --muted: #94A3B8;
   --glass-fill: rgba(15, 15, 20, 0.65);
-  --glass-strong: rgba(10, 10, 15, 0.85);
 }
 
 @layer base {
@@ -81,6 +81,7 @@
     line-height: 1.2;
   }
   
+  /* Hardware acceleration for common animated elements */
   img, svg, video, canvas, audio, iframe, embed, object {
     display: block;
     vertical-align: middle;
@@ -110,7 +111,7 @@
   }
   
   .glass-card:hover {
-    transform: translateY(-2px);
+    transform: translateY(-2px) scale(1.005);
     box-shadow: 
       inset 0 1px 0 0 var(--border-highlight),
       0 12px 30px -4px rgba(0, 0, 0, 0.08);
@@ -118,7 +119,7 @@
   }
   
   .floating-header {
-    background: var(--glass-strong);
+    background: var(--glass-fill);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--border);
@@ -149,14 +150,14 @@
   
   .ambient-blob-1 {
     position: absolute;
-    top: -10%;
+    top: -15%;
     left: -10%;
-    width: 60vw;
-    height: 60vw;
+    width: 600px;
+    height: 600px;
     border-radius: 50%;
     background: radial-gradient(circle, var(--main) 0%, transparent 60%);
     filter: blur(100px);
-    opacity: 0.08;
+    opacity: 0.12;
     z-index: -1;
     pointer-events: none;
     animation: float 20s ease-in-out infinite;
@@ -166,12 +167,12 @@
     position: absolute;
     bottom: -20%;
     right: -10%;
-    width: 70vw;
-    height: 70vw;
+    width: 700px;
+    height: 700px;
     border-radius: 50%;
     background: radial-gradient(circle, #8B5CF6 0%, transparent 60%);
     filter: blur(120px);
-    opacity: 0.06;
+    opacity: 0.08;
     z-index: -1;
     pointer-events: none;
     animation: float-delayed 25s ease-in-out infinite;
@@ -259,3 +260,7 @@
     padding-bottom: env(safe-area-inset-bottom, 1rem);
   }
 }
+\`;
+
+fs.writeFileSync('src/app/globals.css', cssContent);
+console.log('globals.css updated for premium redesign');

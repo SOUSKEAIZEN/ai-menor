@@ -9,15 +9,15 @@ function Badge({ className, variant = "default", ...props }: BadgeProps) {
   return (
     <div
       className={cn(
-        "inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+        "inline-flex items-center rounded-full border px-3 py-1 text-xs font-bold transition-all uppercase tracking-wider shadow-sm",
         {
-          "border-transparent bg-main text-white hover:bg-main/80": variant === "default",
-          "border-transparent bg-fade text-contrast hover:bg-fade/80": variant === "secondary",
-          "text-contrast": variant === "outline",
-          "border-transparent bg-blend text-main": variant === "ai",
-          "border-transparent bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-100": variant === "success",
-          "border-transparent bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-100": variant === "warning",
-          "border-transparent bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-100": variant === "danger",
+          "border-[var(--border-highlight)] bg-gradient-to-b from-[var(--main-light)] to-[var(--main)] text-white shadow-md": variant === "default",
+          "border-[var(--border)] bg-[var(--glass-fill)] backdrop-blur-md text-[var(--contrast)]": variant === "secondary",
+          "border-[var(--border)] text-[var(--contrast)] backdrop-blur-sm": variant === "outline",
+          "border-[var(--main)]/30 bg-gradient-to-br from-[var(--blend)] to-[var(--background)] text-[var(--main)] shadow-[0_2px_10px_rgba(79,70,229,0.15)]": variant === "ai",
+          "border-emerald-500/20 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 backdrop-blur-md": variant === "success",
+          "border-amber-500/20 bg-amber-500/10 text-amber-600 dark:text-amber-400 backdrop-blur-md": variant === "warning",
+          "border-rose-500/20 bg-rose-500/10 text-rose-600 dark:text-rose-400 backdrop-blur-md": variant === "danger",
         },
         className
       )}

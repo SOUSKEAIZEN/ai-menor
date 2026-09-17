@@ -32,7 +32,7 @@ export const Tabs = ({ className, children, defaultValue, value, onValueChange, 
 }
 
 export const TabsList = ({ className, children }: { className?: string, children: React.ReactNode }) => (
-  <div className={cn("inline-flex h-11 items-center justify-center rounded-xl bg-surface/40 backdrop-blur-md border border-[var(--border)] p-1 text-[var(--muted)] shadow-sm", className)}>{children}</div>
+  <div className={cn("inline-flex h-12 items-center justify-center rounded-2xl bg-[var(--glass-fill)] backdrop-blur-2xl border border-[var(--border)] p-1.5 text-[var(--muted)] shadow-[inset_0_1px_2px_rgba(0,0,0,0.03)]", className)}>{children}</div>
 )
 
 export const TabsTrigger = ({ className, value, active, children, onClick }: { className?: string, value?: string, active?: boolean, children: React.ReactNode, onClick?: () => void }) => {
@@ -43,12 +43,12 @@ export const TabsTrigger = ({ className, value, active, children, onClick }: { c
     if (onClick) onClick()
   }
   return (
-    <button onClick={handleClick} className={cn("inline-flex items-center justify-center whitespace-nowrap rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main)] disabled:pointer-events-none disabled:opacity-50", isActive ? "bg-[var(--elevated)] text-[var(--main)] shadow-[0_2px_10px_rgba(0,0,0,0.1)]  font-semibold" : "hover:text-[var(--contrast)] hover:bg-[var(--main)]/10", className)}>{children}</button>
+    <button onClick={handleClick} className={cn("inline-flex items-center justify-center whitespace-nowrap rounded-xl px-5 py-2 text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main)] disabled:pointer-events-none disabled:opacity-50", isActive ? "bg-[var(--surface)] text-[var(--main)] shadow-[0_4px_15px_-3px_rgba(0,0,0,0.05),inset_0_1px_0_0_var(--border-highlight)] border border-[var(--border)]/50" : "hover:text-[var(--contrast)] hover:bg-[var(--glass-strong)]", className)}>{children}</button>
   )
 }
 
 export const TabsContent = ({ className, value, active, children }: { className?: string, value?: string, active?: boolean, children: React.ReactNode }) => {
   const ctx = React.useContext(TabsContext)
   const isActive = active !== undefined ? active : (value !== undefined && ctx.value === value)
-  return isActive ? <div className={cn("mt-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2", className)}>{children}</div> : null
+  return isActive ? <div className={cn("mt-4 outline-none animate-in fade-in slide-in-from-bottom-2 duration-500", className)}>{children}</div> : null
 }
