@@ -4,16 +4,14 @@ import { Bot } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export default function MarketingLayout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-[var(--background)] text-[var(--main)] font-sans">
       <header className="fixed top-4 left-4 right-4 z-50 floating-header flex items-center justify-between px-6 mx-auto max-w-7xl">
         <div className="w-full h-16 flex items-center justify-between">
-          <Link href="/" className="flex items-center space-x-2">
-            <Bot className="h-8 w-8 text-[var(--main)]" />
-            <span className="font-bold text-xl tracking-tight text-gradient">AI mentor</span>
-          </Link>
+          <BrandLogo />
           <nav className="hidden md:flex items-center space-x-8 text-sm font-medium text-[var(--muted)]">
             <Link href="/features" className="hover:text-[var(--main)] transition-colors">Features</Link>
             <Link href="/how-it-works" className="hover:text-[var(--main)] transition-colors">How it Works</Link>
@@ -36,10 +34,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       <footer className="border-t border-[var(--border)] bg-[var(--surface)] text-[var(--muted)]">
         <div className="container mx-auto px-4 py-12 grid grid-cols-2 md:grid-cols-4 gap-8">
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <Bot className="h-6 w-6 text-[var(--main)]" />
-              <span className="font-bold text-lg text-[var(--main)]">AI mentor</span>
-            </div>
+            <BrandLogo className="scale-75 origin-left" />
             <p className="text-sm">Intelligent mentoring for the modern era.</p>
           </div>
           <div>

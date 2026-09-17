@@ -28,16 +28,16 @@ export default function LandingPage() {
             Experience the synergy of AI precision and human empathy. AI mentor connects you with top-tier mentors and accelerates your learning with intelligent insights.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/register">
-              <Button size="lg" className="w-full sm:w-auto text-lg px-8 h-14 rounded-full group">
+            <Button size="lg" asChild className="w-full sm:w-auto text-lg px-8 h-14 rounded-full group">
+              <Link href="/register">
                 Get Started <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </Link>
-            <Link href="/features">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 h-14 rounded-full glass-card hover:bg-[var(--surface)]">
+              </Link>
+            </Button>
+            <Button variant="outline" size="lg" asChild className="w-full sm:w-auto text-lg px-8 h-14 rounded-full glass-card hover:bg-[var(--surface)]">
+              <Link href="/features">
                 Explore Features
-              </Button>
-            </Link>
+              </Link>
+            </Button>
           </div>
         </motion.div>
       </section>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, Users, Bell, Activity, MessageSquare, Calendar, BarChart2, User, Settings, Menu, X } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export default function MentorLayout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -33,7 +34,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
       {/* Floating Sidebar */}
       <aside className={`fixed inset-y-4 left-4 z-50 w-64 floating-sidebar flex flex-col transform transition-transform duration-300 ease-in-out md:relative md:inset-0 md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-[120%]'}`}>
         <div className="h-16 flex items-center justify-between px-6 border-b border-border/40 shrink-0">
-          <Link href="/" className="text-xl font-bold text-gradient tracking-tight hover:opacity-80 transition-opacity">AI mentor</Link>
+          <BrandLogo />
           <button className="md:hidden text-[var(--muted)] hover:text-[var(--contrast)] transition-colors" onClick={() => setMobileMenuOpen(false)}>
             <X size={24} />
           </button>
@@ -68,7 +69,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
              <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1 hover:bg-[var(--main)]/10 rounded-lg transition-colors">
                <Menu size={24} />
              </button>
-             <Link href="/" className="font-bold text-gradient hover:opacity-80 transition-opacity">AI mentor</Link>
+             <BrandLogo className="scale-90 origin-left" />
            </div>
            <div className="flex items-center gap-4 ml-auto">
               <ThemeToggle />

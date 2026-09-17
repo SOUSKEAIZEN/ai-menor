@@ -8,6 +8,7 @@ import {
   Settings, Activity, Server, GraduationCap, Shield, Bot, BarChart3, Menu, X
 } from 'lucide-react';
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 const sidebarLinks = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },

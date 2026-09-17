@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { BookOpen } from 'lucide-react';
 
 import { ThemeToggle } from '@/components/ThemeToggle';
+import { BrandLogo } from '@/components/ui/BrandLogo';
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,12 +18,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[var(--main)] rounded-full blur-[120px] opacity-10"></div>
         
         <div className="relative z-10">
-          <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-            <div className="w-10 h-10 bg-[var(--main)] text-[var(--contrast)] rounded-xl flex items-center justify-center">
-              <BookOpen size={24} />
-            </div>
-            <span>AI mentor</span>
-          </Link>
+          <BrandLogo />
         </div>
 
         <div className="relative z-10 max-w-lg mt-20">
@@ -58,12 +54,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
         <div className="w-full max-w-md">
           {/* Mobile Logo */}
           <div className="flex lg:hidden justify-center mb-8">
-            <Link href="/" className="flex items-center gap-2 text-2xl font-bold">
-              <div className="w-8 h-8 bg-[var(--main)] text-[var(--contrast)] rounded-xl flex items-center justify-center">
-                <BookOpen size={20} />
-              </div>
-              <span>AI mentor</span>
-            </Link>
+            <BrandLogo className="scale-90" />
           </div>
           
           {children}
