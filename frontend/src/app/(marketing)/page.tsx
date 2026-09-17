@@ -28,9 +28,9 @@ export default function LandingPage() {
             Experience the synergy of AI precision and human empathy. AI mentor connects you with top-tier mentors and accelerates your learning with intelligent insights.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link href="/student/dashboard">
+            <Link href="/register">
               <Button size="lg" className="w-full sm:w-auto text-lg px-8 h-14 rounded-full group">
-                Start Learning <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Get Started <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
             </Link>
             <Link href="/features">

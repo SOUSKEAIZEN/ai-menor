@@ -23,8 +23,8 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
           </nav>
           <div className="flex items-center space-x-4">
             <ThemeToggle />
-            <Link href="/student/dashboard"><Button variant="ghost" className="hidden sm:inline-flex">Sign In</Button></Link>
-            <Link href="/student/dashboard"><Button variant="primary">Get Started</Button></Link>
+            
+            
           </div>
         </div>
       </header>

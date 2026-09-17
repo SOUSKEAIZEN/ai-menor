@@ -21,7 +21,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
   ];
 
   return (
-    <div className="flex min-h-screen bg-[var(--background)] text-[var(--main)] overflow-hidden ambient-bg p-2 md:p-4 gap-4">
+    <div className="flex h-[100dvh] bg-[var(--background)] text-[var(--main)] overflow-hidden ambient-bg p-3 pt-safe md:p-4 gap-4">
       <div className="ambient-blob-1"></div>
       <div className="ambient-blob-2"></div>
 
@@ -33,7 +33,7 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
       {/* Floating Sidebar */}
       <aside className={`fixed inset-y-4 left-4 z-50 w-64 floating-sidebar flex flex-col transform transition-transform duration-300 ease-in-out md:relative md:inset-0 md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-[120%]'}`}>
         <div className="h-16 flex items-center justify-between px-6 border-b border-border/40 shrink-0">
-          <h2 className="text-xl font-bold text-gradient tracking-tight">AI mentor</h2>
+          <Link href="/" className="text-xl font-bold text-gradient tracking-tight hover:opacity-80 transition-opacity">AI mentor</Link>
           <button className="md:hidden text-[var(--muted)] hover:text-[var(--contrast)] transition-colors" onClick={() => setMobileMenuOpen(false)}>
             <X size={24} />
           </button>
@@ -61,21 +61,21 @@ export default function MentorLayout({ children }: { children: React.ReactNode }
       </aside>
 
       {/* Main Content */}
-      <main className="flex-1 flex flex-col h-[calc(100vh-2rem)] overflow-hidden w-full relative z-10 gap-4">
+      <main className="flex-1 flex flex-col h-full overflow-hidden w-full relative z-10 gap-4">
         {/* Floating Header */}
         <header className="h-16 shrink-0 floating-header flex items-center px-4 md:px-8 justify-between md:justify-end z-20">
            <div className="flex items-center gap-3 md:hidden">
              <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1 hover:bg-[var(--main)]/10 rounded-lg transition-colors">
                <Menu size={24} />
              </button>
-             <span className="font-bold text-gradient">AI mentor</span>
+             <Link href="/" className="font-bold text-gradient hover:opacity-80 transition-opacity">AI mentor</Link>
            </div>
            <div className="flex items-center gap-4 ml-auto">
               <ThemeToggle />
               <div className="w-px h-6 bg-border/40 hidden md:block"></div>
-              <div className="relative group">
+              <div className="relative group focus-within:z-50">
                <button className="w-9 h-9 rounded-full bg-gradient-to-br from-[var(--main)] to-indigo-700 text-white flex items-center justify-center text-sm font-bold shadow-md cursor-pointer hover:shadow-lg transition-all hover:scale-105">EK</button>
-               <div className="absolute right-0 top-full mt-2 w-56 bg-[var(--surface)]/90 backdrop-blur-xl border border-border/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 origin-top-right scale-95 group-hover:scale-100 z-50">
+               <div className="absolute right-0 top-full mt-2 w-56 bg-[var(--surface)]/90 backdrop-blur-xl border border-border/40 rounded-xl shadow-[0_8px_30px_rgb(0,0,0,0.12)] opacity-0 invisible group-hover:opacity-100 group-hover:visible group-focus-within:opacity-100 group-focus-within:visible transition-all duration-300 origin-top-right scale-95 group-hover:scale-100 group-focus-within:scale-100 z-50">
                   <div className="p-4 border-b border-border/40 bg-[var(--main)]/5 rounded-t-xl">
                      <p className="font-bold text-[var(--contrast)] text-sm">ESHA KHANNA</p>
                      <p className="text-xs text-[var(--muted)] mt-0.5">esha.k@university.edu</p>
