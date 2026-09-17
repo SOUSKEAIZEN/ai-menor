@@ -68,7 +68,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       {/* Main Content */}
       <div className="flex-1 flex flex-col min-w-0 w-full relative z-10 h-full gap-4">
         {/* Floating Header */}
-        <header className="h-16 shrink-0 floating-header flex items-center justify-between md:justify-end px-4 md:px-6 z-20">
+        <header className="h-16 shrink-0 relative floating-header flex items-center justify-between md:justify-end px-4 md:px-6 z-20">
           <div className="flex items-center gap-3 md:hidden">
              <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1 hover:bg-[var(--main)]/10 rounded-lg transition-colors">
                <Menu size={24} />
