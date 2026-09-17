@@ -10,18 +10,21 @@ import Link from 'next/link';
 
 export default function LandingPage() {
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center ambient-bg">
+      <div className="ambient-blob-1"></div>
+      <div className="ambient-blob-2"></div>
+      
       {/* Hero Section */}
-      <section className="w-full pt-24 pb-32 px-4 text-center max-w-5xl mx-auto flex flex-col items-center">
+      <section className="w-full pt-24 pb-32 px-4 text-center max-w-5xl mx-auto flex flex-col items-center relative z-10 perspective-container">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>
-          <Badge variant="secondary" className="mb-6 py-1.5 px-4 rounded-full bg-[var(--elevated)] border border-[var(--border)] text-[var(--main)]">
+          <Badge variant="secondary" className="mb-6 py-1.5 px-4 rounded-full bg-elevated/50 backdrop-blur-md border border-[var(--border)] text-[var(--main)] shadow-sm">
             <Sparkles className="w-4 h-4 mr-2 inline" /> Introducing AI mentor 2.0
           </Badge>
           <h1 className="text-5xl md:text-7xl font-extrabold tracking-tight mb-8 font-manrope text-[var(--main)]">
             Intelligent Mentoring, <br/>
-            <span className="text-[var(--muted)]">Elevated.</span>
+            <span className="text-gradient">Elevated.</span>
           </h1>
-          <p className="text-xl text-[var(--muted)] mb-10 max-w-2xl mx-auto">
+          <p className="text-xl text-[var(--muted)] mb-10 max-w-2xl mx-auto leading-relaxed">
             Experience the synergy of AI precision and human empathy. AI mentor connects you with top-tier mentors and accelerates your learning with intelligent insights.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -31,7 +34,7 @@ export default function LandingPage() {
               </Button>
             </Link>
             <Link href="/features">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 h-14 rounded-full">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto text-lg px-8 h-14 rounded-full glass-card hover:bg-[var(--surface)]">
                 Explore Features
               </Button>
             </Link>
@@ -39,45 +42,46 @@ export default function LandingPage() {
         </motion.div>
       </section>
 
-      {/* Abstract Dashboard / Mock Conversation */}
-      <section className="w-full max-w-6xl mx-auto px-4 mb-32">
+      {/* Abstract Dashboard / Mock Conversation with 3D Effect */}
+      <section className="w-full max-w-6xl mx-auto px-4 mb-32 perspective-container">
         <motion.div 
-          initial={{ opacity: 0, y: 40 }} 
-          animate={{ opacity: 1, y: 0 }} 
-          transition={{ duration: 0.7, delay: 0.2 }}
-          className="rounded-3xl border border-[var(--border)] bg-[var(--surface)] shadow-2xl overflow-hidden"
+          initial={{ opacity: 0, rotateX: 20, y: 100 }} 
+          animate={{ opacity: 1, rotateX: 0, y: 0 }} 
+          transition={{ duration: 0.8, delay: 0.2, type: "spring", bounce: 0.4 }}
+          whileHover={{ rotateX: 2, rotateY: -2, scale: 1.02 }}
+          className="rounded-3xl border border-[var(--border)]/40 glass-panel shadow-[0_20px_50px_rgba(79,70,229,0.15)]  overflow-hidden transform-3d transition-transform duration-500 relative z-10"
         >
-          <div className="h-12 border-b border-[var(--border)] bg-[var(--elevated)] flex items-center px-4 space-x-2">
-            <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-            <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-            <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+          <div className="h-12 border-b border-[var(--border)] bg-elevated/50 backdrop-blur-xl flex items-center px-4 space-x-2">
+            <div className="w-3 h-3 rounded-full bg-red-500/80 shadow-sm"></div>
+            <div className="w-3 h-3 rounded-full bg-yellow-500/80 shadow-sm"></div>
+            <div className="w-3 h-3 rounded-full bg-green-500/80 shadow-sm"></div>
           </div>
-          <div className="p-8 grid md:grid-cols-2 gap-8 bg-[var(--surface)]">
+          <div className="p-8 grid md:grid-cols-2 gap-8 bg-surface/40 backdrop-blur-sm">
             <div className="space-y-4">
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[var(--elevated)] flex items-center justify-center shrink-0 border border-[var(--border)]">
-                  <span className="text-sm font-bold">You</span>
+                <div className="w-10 h-10 rounded-full bg-[var(--surface)] flex items-center justify-center shrink-0 border border-[var(--border)] shadow-sm">
+                  <span className="text-sm font-bold text-[var(--main)]">You</span>
                 </div>
-                <div className="bg-[var(--elevated)] p-4 rounded-2xl rounded-tl-sm text-[var(--muted)] border border-[var(--border)]">
+                <div className="bg-elevated/60 backdrop-blur-md p-4 rounded-2xl rounded-tl-sm text-[var(--contrast)] border border-[var(--border)] shadow-sm">
                   How can I optimize this React component for better rendering performance?
                 </div>
               </div>
               <div className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-[var(--contrast)] text-[var(--background)] flex items-center justify-center shrink-0">
+                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--main)] to-indigo-700 text-white flex items-center justify-center shrink-0 shadow-md">
                   <Brain className="w-5 h-5" />
                 </div>
-                <div className="bg-[var(--background)] p-4 rounded-2xl rounded-tl-sm text-[var(--main)] border border-[var(--border)] shadow-sm">
+                <div className="bg-blend/50 backdrop-blur-md p-4 rounded-2xl rounded-tl-sm text-[var(--contrast)] border border-indigo-200  shadow-md">
                   Let's analyze the re-renders. I notice you're passing a new object reference in the props on every render. We should memoize that with `useMemo`. Here's a rewritten snippet...
                 </div>
               </div>
             </div>
             <div className="flex flex-col justify-center space-y-6 pl-0 md:pl-8 border-t md:border-t-0 md:border-l border-[var(--border)] pt-8 md:pt-0">
-              <h3 className="text-2xl font-bold font-manrope">AI Co-pilot</h3>
+              <h3 className="text-2xl font-bold font-manrope text-gradient">AI Co-pilot</h3>
               <p className="text-[var(--muted)]">Get instant, context-aware assistance while you learn. The AI mentor understands your codebase and helps you push through blockers immediately.</p>
               <ul className="space-y-3">
-                <li className="flex items-center text-[var(--main)]"><Zap className="w-5 h-5 mr-3 text-[var(--contrast)]" /> Real-time code analysis</li>
-                <li className="flex items-center text-[var(--main)]"><Zap className="w-5 h-5 mr-3 text-[var(--contrast)]" /> Personalized learning paths</li>
-                <li className="flex items-center text-[var(--main)]"><Zap className="w-5 h-5 mr-3 text-[var(--contrast)]" /> 24/7 unblocking</li>
+                <li className="flex items-center text-[var(--contrast)]"><Zap className="w-5 h-5 mr-3 text-yellow-500 drop-shadow-md" /> Real-time code analysis</li>
+                <li className="flex items-center text-[var(--contrast)]"><Zap className="w-5 h-5 mr-3 text-yellow-500 drop-shadow-md" /> Personalized learning paths</li>
+                <li className="flex items-center text-[var(--contrast)]"><Zap className="w-5 h-5 mr-3 text-yellow-500 drop-shadow-md" /> 24/7 unblocking</li>
               </ul>
             </div>
           </div>
@@ -85,41 +89,41 @@ export default function LandingPage() {
       </section>
 
       {/* Trust Pillars */}
-      <section className="w-full bg-[var(--elevated)] py-32 border-y border-[var(--border)]">
+      <section className="w-full bg-[var(--elevated)]/30 backdrop-blur-xl py-32 border-y border-[var(--border)] relative z-10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold font-manrope mb-4">The Triad of Success</h2>
+            <h2 className="text-4xl font-bold font-manrope mb-4 text-gradient">The Triad of Success</h2>
             <p className="text-[var(--muted)] max-w-2xl mx-auto">AI mentor brings together the three essential elements for unparalleled growth.</p>
           </div>
           <div className="grid md:grid-cols-3 gap-8">
-            <Card className="bg-[var(--surface)] border-[var(--border)] hover:border-[var(--contrast)] transition-colors">
+            <Card className="hover:ring-2 hover:ring-[var(--main)]/50">
               <CardHeader>
-                <div className="w-12 h-12 bg-[var(--background)] rounded-xl flex items-center justify-center mb-4 border border-[var(--border)]">
-                  <Users className="w-6 h-6 text-[var(--contrast)]" />
+                <div className="w-12 h-12 bg-elevated/50 rounded-xl flex items-center justify-center mb-4 border border-[var(--border)] shadow-sm">
+                  <Users className="w-6 h-6 text-[var(--main)]" />
                 </div>
-                <CardTitle className="font-manrope text-xl">The Student</CardTitle>
+                <CardTitle className="font-manrope text-xl text-[var(--main)]">The Student</CardTitle>
               </CardHeader>
               <CardContent className="text-[var(--muted)]">
                 Driven by curiosity. You set the goals, we provide the ultimate environment for you to thrive and achieve mastery.
               </CardContent>
             </Card>
-            <Card className="bg-[var(--surface)] border-[var(--border)] hover:border-[var(--contrast)] transition-colors">
+            <Card className="hover:ring-2 hover:ring-[var(--main)]/50">
               <CardHeader>
-                <div className="w-12 h-12 bg-[var(--background)] rounded-xl flex items-center justify-center mb-4 border border-[var(--border)]">
-                  <Brain className="w-6 h-6 text-[var(--contrast)]" />
+                <div className="w-12 h-12 bg-elevated/50 rounded-xl flex items-center justify-center mb-4 border border-[var(--border)] shadow-sm">
+                  <Brain className="w-6 h-6 text-[var(--main)]" />
                 </div>
-                <CardTitle className="font-manrope text-xl">AI Mentor</CardTitle>
+                <CardTitle className="font-manrope text-xl text-[var(--main)]">AI Mentor</CardTitle>
               </CardHeader>
               <CardContent className="text-[var(--muted)]">
                 Always available. Analyzes your learning patterns, provides instant feedback, and curates customized study materials.
               </CardContent>
             </Card>
-            <Card className="bg-[var(--surface)] border-[var(--border)] hover:border-[var(--contrast)] transition-colors">
+            <Card className="hover:ring-2 hover:ring-[var(--main)]/50">
               <CardHeader>
-                <div className="w-12 h-12 bg-[var(--background)] rounded-xl flex items-center justify-center mb-4 border border-[var(--border)]">
-                  <ShieldCheck className="w-6 h-6 text-[var(--contrast)]" />
+                <div className="w-12 h-12 bg-elevated/50 rounded-xl flex items-center justify-center mb-4 border border-[var(--border)] shadow-sm">
+                  <ShieldCheck className="w-6 h-6 text-[var(--main)]" />
                 </div>
-                <CardTitle className="font-manrope text-xl">Human Mentor</CardTitle>
+                <CardTitle className="font-manrope text-xl text-[var(--main)]">Human Mentor</CardTitle>
               </CardHeader>
               <CardContent className="text-[var(--muted)]">
                 Industry veterans who provide strategic guidance, review complex architectures, and offer career-defining advice.

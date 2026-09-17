@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { 
   LayoutDashboard, Users, BookOpen, FileText, 
   Settings, Activity, Server, GraduationCap, Shield, Bot, BarChart3, Menu, X
@@ -24,18 +25,22 @@ const sidebarLinks = [
 
 export default function AdminLayout({ children }: { children: React.ReactNode }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   return (
-    <div className="flex min-h-screen bg-[var(--background)] text-[var(--main)]">
+    <div className="flex min-h-screen bg-[var(--background)] text-[var(--main)] ambient-bg">
+      <div className="ambient-blob-1"></div>
+      <div className="ambient-blob-2"></div>
+
       {/* Mobile Sidebar Overlay */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 z-40 bg-black/50 md:hidden" onClick={() => setMobileMenuOpen(false)} />
+        <div className="fixed inset-0 z-40 bg-black/50 backdrop-blur-sm md:hidden" onClick={() => setMobileMenuOpen(false)} />
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 border-r border-[var(--border)] bg-[var(--surface)] flex flex-col transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-        <div className="h-16 flex items-center justify-between px-6 border-b border-[var(--border)] shrink-0">
-          <span className="font-bold text-xl">AI mentor Admin</span>
+      <aside className={`fixed inset-y-0 left-0 z-50 w-64 glass-panel flex flex-col transform transition-transform duration-200 ease-in-out md:relative md:translate-x-0 ${mobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+        <div className="h-16 flex items-center justify-between px-6 border-b border-border/40 shrink-0">
+          <span className="font-bold text-xl text-gradient">AI mentor Admin</span>
           <button className="md:hidden text-[var(--muted)]" onClick={() => setMobileMenuOpen(false)}>
             <X size={24} />
           </button>
@@ -43,14 +48,16 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
         <nav className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
           {sidebarLinks.map((link) => {
             const Icon = link.icon;
+            const isActive = pathname === link.href || pathname.startsWith(link.href + '/');
             return (
               <Link
                 key={link.href}
                 href={link.href}
                 onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center gap-3 px-3 py-2 rounded-md hover:bg-[var(--fade)] text-sm font-medium transition-colors"
+                className={`group relative flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-300 ${isActive ? 'bg-[var(--main)]/10 text-[var(--main)] shadow-sm' : 'text-[var(--contrast)] hover:bg-[var(--main)]/5 hover:text-[var(--main)] hover:translate-x-1'}`}
               >
-                <Icon className="w-4 h-4 text-[var(--muted)]" />
+                {isActive && <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[var(--main)] rounded-r-full shadow-[0_0_8px_var(--main)]" />}
+                <Icon className={`w-4 h-4 transition-colors ${isActive ? 'text-[var(--main)]' : 'text-[var(--muted)] group-hover:text-[var(--main)]'}`} />
                 {link.label}
               </Link>
             );
@@ -59,8 +66,8 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
       </aside>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col min-w-0 w-full">
-        <header className="h-16 shrink-0 flex items-center justify-between md:justify-end px-4 md:px-6 border-b border-[var(--border)] bg-[var(--surface)]">
+      <div className="flex-1 flex flex-col min-w-0 w-full relative z-10">
+        <header className="h-16 shrink-0 glass-header flex items-center justify-between md:justify-end px-4 md:px-6">
           <div className="flex items-center gap-3 md:hidden">
              <button onClick={() => setMobileMenuOpen(true)} className="text-[var(--contrast)] p-1">
                <Menu size={24} />

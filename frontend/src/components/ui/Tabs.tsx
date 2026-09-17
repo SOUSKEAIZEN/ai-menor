@@ -32,7 +32,7 @@ export const Tabs = ({ className, children, defaultValue, value, onValueChange, 
 }
 
 export const TabsList = ({ className, children }: { className?: string, children: React.ReactNode }) => (
-  <div className={cn("inline-flex h-10 items-center justify-center rounded-[var(--radius-md)] bg-[var(--fade)] p-1 text-[var(--muted)]", className)}>{children}</div>
+  <div className={cn("inline-flex h-11 items-center justify-center rounded-xl bg-surface/40 backdrop-blur-md border border-[var(--border)] p-1 text-[var(--muted)] shadow-sm", className)}>{children}</div>
 )
 
 export const TabsTrigger = ({ className, value, active, children, onClick }: { className?: string, value?: string, active?: boolean, children: React.ReactNode, onClick?: () => void }) => {
@@ -43,7 +43,7 @@ export const TabsTrigger = ({ className, value, active, children, onClick }: { c
     if (onClick) onClick()
   }
   return (
-    <button onClick={handleClick} className={cn("inline-flex items-center justify-center whitespace-nowrap rounded-[var(--radius-sm)] px-3 py-1.5 text-sm font-medium ring-offset-background transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50", isActive ? "bg-[var(--surface)] text-[var(--contrast)] shadow-sm" : "hover:text-[var(--contrast)] hover:bg-[var(--surface)]/50", className)}>{children}</button>
+    <button onClick={handleClick} className={cn("inline-flex items-center justify-center whitespace-nowrap rounded-lg px-4 py-1.5 text-sm font-medium transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--main)] disabled:pointer-events-none disabled:opacity-50", isActive ? "bg-[var(--elevated)] text-[var(--main)] shadow-[0_2px_10px_rgba(0,0,0,0.1)]  font-semibold" : "hover:text-[var(--contrast)] hover:bg-[var(--main)]/10", className)}>{children}</button>
   )
 }
 
